@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "smct/demo-laravel",
     "type": "project",
-    "description": "Maligaya Trading Co. — a small Laravel storefront used as the S1 practice project.",
+    "description": "Maligaya Trading Company — a small Laravel storefront used as the S1 practice project.",
     "keywords": ["laravel", "demo"],
     "license": "MIT",
     "require": {

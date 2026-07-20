@@ -20,6 +20,8 @@ class OrdersIndexTest extends TestCase
 
         $this->get('/orders')
             ->assertOk()
+            ->assertSee('data-auto-search', false)
+            ->assertSee('Results update as you type.')
             ->assertSee('Rosa Villanueva')
             ->assertSee('#'.$order->id);
     }

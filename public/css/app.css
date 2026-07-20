@@ -23,7 +23,9 @@
     --space-5: 2.5rem;
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -73,9 +75,13 @@ body {
     text-decoration: none;
 }
 
-.site-nav a:hover { text-decoration: underline; }
+.site-nav a:hover {
+    text-decoration: underline;
+}
 
-.inline-form { display: inline; }
+.inline-form {
+    display: inline;
+}
 
 .link-button {
     background: none;
@@ -87,7 +93,9 @@ body {
     text-decoration: underline;
 }
 
-.site-nav .link-button { color: #eaf4f0; }
+.site-nav .link-button {
+    color: #eaf4f0;
+}
 
 /* Cards — the app's standard surface. */
 .card {
@@ -105,13 +113,24 @@ body {
 }
 
 /* Content */
-main.container { padding-top: var(--space-4); padding-bottom: var(--space-5); }
+main.container {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-5);
+}
 
-h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
+h1 {
+    font-size: 1.5rem;
+    margin: var(--space-3) 0 var(--space-1);
+}
 
-.page-note { color: var(--color-muted); margin-top: 0; }
+.page-note {
+    color: var(--color-muted);
+    margin-top: 0;
+}
 
-.muted { color: var(--color-muted); }
+.muted {
+    color: var(--color-muted);
+}
 
 .flash {
     background: #e8f3ec;
@@ -134,9 +153,15 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     border-bottom: 1px solid var(--color-line);
 }
 
-.data-table th { color: var(--color-muted); font-weight: 600; font-size: 0.85rem; }
+.data-table th {
+    color: var(--color-muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
 
-.data-table .num { text-align: right; }
+.data-table .num {
+    text-align: right;
+}
 
 
 /* Search */
@@ -189,10 +214,22 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     font-weight: 600;
 }
 
-.badge-pending { background: #fdf2e3; color: var(--color-accent); }
-.badge-paid { background: #e8f0f7; color: #2e5c8a; }
-.badge-shipped { background: #e8f3ec; color: var(--color-ok); }
-.badge-cancelled { background: #f7e9e8; color: var(--color-danger); }
+.badge-pending {
+    background: #fdf2e3;
+    color: var(--color-accent);
+}
+.badge-paid {
+    background: #e8f0f7;
+    color: #2e5c8a;
+}
+.badge-shipped {
+    background: #e8f3ec;
+    color: var(--color-ok);
+}
+.badge-cancelled {
+    background: #f7e9e8;
+    color: var(--color-danger);
+}
 
 /* Products */
 .product-grid {
@@ -201,17 +238,96 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     gap: var(--space-3);
 }
 
-.sku { color: var(--color-muted); font-size: 0.8rem; margin: 0; }
+.product-thumb {
+    display: block;
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+    border-radius: 999px;
+    margin: 0 auto var(--space-3);
+    border: 3px solid #f0ebe1;
+    box-shadow: var(--shadow);
+}
 
-.price { font-size: 1.2rem; font-weight: 700; margin: var(--space-1) 0; }
+.sku {
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: var(--space-1) 0;
+}
 
 .add-to-cart {
     display: flex;
     align-items: end;
     gap: var(--space-2);
+    flex-wrap: wrap;
 }
 
-.add-to-cart input[type="number"] { width: 4rem; }
+.quantity-field {
+    display: grid;
+    gap: var(--space-1);
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.quantity-field label {
+    cursor: pointer;
+}
+
+.quantity-combo {
+    position: relative;
+    display: block;
+    height: 2.45rem;
+    border: 1px solid #d5cab9;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), var(--shadow);
+}
+
+.quantity-field input {
+    height: 2.45rem;
+    border: 0;
+    background:
+        linear-gradient(90deg, transparent calc(100% - 2.45rem), #fbfaf7 calc(100% - 2.45rem)),
+        linear-gradient(45deg, transparent 50%, var(--color-brand) 50%),
+        linear-gradient(135deg, var(--color-brand) 50%, transparent 50%);
+    background-position:
+        0 0,
+        calc(100% - 1.2rem) 1rem,
+        calc(100% - 0.85rem) 1rem;
+    background-size:
+        100% 100%,
+        0.35rem 0.35rem,
+        0.35rem 0.35rem;
+    background-repeat: no-repeat;
+    color: var(--color-ink);
+    font: inherit;
+    font-size: 0.95rem;
+    width: 100%;
+    padding: 0 2.8rem 0 var(--space-2);
+    -moz-appearance: textfield;
+}
+
+.quantity-field input::-webkit-outer-spin-button,
+.quantity-field input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+.quantity-combo:hover {
+    border-color: var(--color-brand);
+}
+
+.quantity-combo:focus-within {
+    outline: 2px solid var(--color-brand);
+    border-color: var(--color-brand);
+}
 
 /* Checkout */
 .checkout-grid {
@@ -222,10 +338,14 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
 }
 
 @media (max-width: 800px) {
-    .checkout-grid { grid-template-columns: 1fr; }
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
-.totals { margin: var(--space-3) 0 0; }
+.totals {
+    margin: var(--space-3) 0 0;
+}
 
 .totals div {
     display: flex;
@@ -233,15 +353,21 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     padding: var(--space-1) 0;
 }
 
-.totals dt { color: var(--color-muted); }
-.totals dd { margin: 0; }
+.totals dt {
+    color: var(--color-muted);
+}
+.totals dd {
+    margin: 0;
+}
 
 .totals .grand {
     border-top: 1px solid var(--color-line);
     font-weight: 700;
 }
 
-.totals .grand dt { color: var(--color-ink); }
+.totals .grand dt {
+    color: var(--color-ink);
+}
 
 /* Forms */
 .stacked-form label {
@@ -264,9 +390,16 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     border-color: var(--color-brand);
 }
 
-.field-error { color: var(--color-danger); font-size: 0.85rem; margin: var(--space-1) 0 0; }
+.field-error {
+    color: var(--color-danger);
+    font-size: 0.85rem;
+    margin: var(--space-1) 0 0;
+}
 
-.narrow { max-width: 420px; margin: 0 auto; }
+.narrow {
+    max-width: 420px;
+    margin: 0 auto;
+}
 
 /* Buttons */
 .btn {
@@ -287,9 +420,13 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     color: #fff;
 }
 
-.btn-primary:hover { background: var(--color-brand-dark); }
+.btn-primary:hover {
+    background: var(--color-brand-dark);
+}
 
-.stacked-form .btn { margin-top: var(--space-3); }
+.stacked-form .btn {
+    margin-top: var(--space-3);
+}
 
 /* Footer */
 .site-footer {

@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
         ]);
         $customers = Customer::factory()->count(599)->create()->push($drArnulfoReynolds);
 
-        $this->seedOrders($products, $customers, $drArnulfoReynolds);
+        $this->seedOrders($products, $customers);
+        $this->seedPaidOrderForDrArnulfoReynolds($products);
     }
 
     /**
@@ -99,4 +100,41 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    /**
+     * Keep this known customer record stable for order-status practice tasks.
+     */
+    private function seedPaidOrderForDrArnulfoReynolds($products): void
+    {
+        $product = $products->first();
+        $quantity = 1;
+        $subtotal = $product->price_cents * $quantity;
+        $vat = (int) round($subtotal * self::VAT_RATE);
+        $shipping = $subtotal >= 500000 ? 0 : 9900;
+
+        DB::transaction(function () use ($product, $quantity, $subtotal, $vat, $shipping) {
+            $customer = Customer::updateOrCreate(
+                ['email' => 'arnulfo.reynolds@example.com'],
+                [
+                    'name' => 'Dr. Arnulfo Reynolds',
+                    'phone' => '09170000000',
+                    'city' => 'Quezon City',
+                ],
+            );
+
+            $order = $customer->orders()->create([
+                'status' => OrderStatus::Paid,
+                'subtotal_cents' => $subtotal,
+                'vat_cents' => $vat,
+                'shipping_cents' => $shipping,
+                'total_cents' => $subtotal + $vat + $shipping,
+                'placed_at' => now(),
+            ]);
+
+            $order->items()->create([
+                'product_id' => $product->id,
+                'quantity' => $quantity,
+                'unit_price_cents' => $product->price_cents,
+            ]);
+        });
+    }
 }

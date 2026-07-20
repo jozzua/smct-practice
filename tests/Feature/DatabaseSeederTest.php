@@ -11,17 +11,16 @@ class DatabaseSeederTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_dr_arnulfo_reynolds_order_164_is_paid(): void
+    public function test_dr_arnulfo_reynolds_seed_order_is_paid(): void
     {
         $this->seed();
 
         $customer = Customer::where('email', 'arnulfo.reynolds@example.com')->firstOrFail();
 
         $this->assertSame('Dr. Arnulfo Reynolds', $customer->name);
-        $this->assertDatabaseHas('orders', [
-            'id' => 164,
-            'customer_id' => $customer->id,
-            'status' => OrderStatus::Paid->value,
-        ]);
+        $this->assertTrue(
+            $customer->orders()->where('status', OrderStatus::Paid)->exists(),
+            'Expected Dr. Arnulfo Reynolds to have a paid order.',
+        );
     }
 }

@@ -178,11 +178,15 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     font-weight: 700;
 }
 
+.quantity-field label {
+    cursor: pointer;
+}
+
 .quantity-combo {
+    position: relative;
     display: grid;
-    grid-template-columns: 4.5rem 4.2rem;
+    grid-template-columns: 4.5rem 2.45rem;
     height: 2.45rem;
-    overflow: hidden;
     border: 1px solid #d5cab9;
     border-radius: var(--radius);
     background: var(--color-surface);
@@ -190,7 +194,7 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
 }
 
 .quantity-field input,
-.quantity-combo select {
+.quantity-toggle {
     height: 2.45rem;
     border: 0;
     background: transparent;
@@ -211,12 +215,9 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     -webkit-appearance: none;
 }
 
-.quantity-combo select {
-    min-width: 0;
-    width: 100%;
-    padding: 0 1.9rem 0 var(--space-2);
-    appearance: none;
+.quantity-toggle {
     border-left: 1px solid #d5cab9;
+    border-radius: 0 var(--radius) var(--radius) 0;
     background-color: #fbfaf7;
     background-image:
         linear-gradient(45deg, transparent 50%, var(--color-brand) 50%),
@@ -235,13 +236,50 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     border-color: var(--color-brand);
 }
 
-.quantity-combo select:hover {
+.quantity-toggle:hover {
     background-color: #ffffff;
 }
 
 .quantity-combo:focus-within {
     outline: 2px solid var(--color-brand);
     border-color: var(--color-brand);
+}
+
+.quantity-menu {
+    position: absolute;
+    top: calc(100% + var(--space-1));
+    right: 0;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(2, 2.5rem);
+    gap: var(--space-1);
+    padding: var(--space-2);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    box-shadow: 0 8px 24px rgba(35, 48, 61, 0.16);
+}
+
+.quantity-menu[hidden] {
+    display: none;
+}
+
+.quantity-menu button {
+    border: 1px solid var(--color-line);
+    border-radius: calc(var(--radius) - 4px);
+    background: #fbfaf7;
+    color: var(--color-ink);
+    font: inherit;
+    font-weight: 700;
+    padding: var(--space-1) 0;
+    cursor: pointer;
+}
+
+.quantity-menu button:hover,
+.quantity-menu button:focus {
+    border-color: var(--color-brand);
+    background: #e8f3ec;
+    color: var(--color-brand-dark);
 }
 
 /* Checkout */

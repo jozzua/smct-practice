@@ -16,10 +16,11 @@
                 <form method="POST" action="{{ route('cart.store') }}" class="add-to-cart">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <label class="quantity-field">
-                        <span>Qty</span>
+                    <div class="quantity-field">
+                        <label for="quantity-{{ $product->id }}">Qty</label>
                         <span class="quantity-combo">
                             <input
+                                id="quantity-{{ $product->id }}"
                                 type="number"
                                 name="quantity"
                                 value="1"
@@ -27,19 +28,67 @@
                                 inputmode="numeric"
                                 autocomplete="off"
                             >
-                            <select
-                                aria-label="Quick quantity choices"
-                                onchange="this.closest('.quantity-combo').querySelector('[name=quantity]').value = this.value"
+                            <button
+                                type="button"
+                                class="quantity-toggle"
+                                aria-label="Open quick quantity choices"
+                                aria-expanded="false"
                             >
+                            </button>
+                            <span class="quantity-menu" hidden>
                                 @for ($quantity = 1; $quantity <= 10; $quantity++)
-                                    <option value="{{ $quantity }}">{{ $quantity }}</option>
+                                    <button type="button" data-quantity="{{ $quantity }}">{{ $quantity }}</button>
                                 @endfor
-                            </select>
+                            </span>
                         </span>
-                    </label>
+                    </div>
                     <button type="submit" class="btn btn-primary">Add to cart</button>
                 </form>
             </x-card>
         @endforeach
     </div>
+
+    <script>
+        document.querySelectorAll('.quantity-combo').forEach((combo) => {
+            const input = combo.querySelector('input');
+            const toggle = combo.querySelector('.quantity-toggle');
+            const menu = combo.querySelector('.quantity-menu');
+
+            toggle.addEventListener('click', () => {
+                const willOpen = menu.hidden;
+
+                document.querySelectorAll('.quantity-menu').forEach((openMenu) => {
+                    openMenu.hidden = true;
+                    openMenu.closest('.quantity-combo')
+                        .querySelector('.quantity-toggle')
+                        .setAttribute('aria-expanded', 'false');
+                });
+
+                menu.hidden = !willOpen;
+                toggle.setAttribute('aria-expanded', String(willOpen));
+            });
+
+            menu.querySelectorAll('button').forEach((option) => {
+                option.addEventListener('click', () => {
+                    input.value = option.dataset.quantity;
+                    menu.hidden = true;
+                    toggle.setAttribute('aria-expanded', 'false');
+                    input.focus();
+                });
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (event.target.closest('.quantity-combo')) {
+                return;
+            }
+
+            document.querySelectorAll('.quantity-menu').forEach((menu) => {
+                menu.hidden = true;
+                menu.closest('.quantity-combo')
+                    .querySelector('.quantity-toggle')
+                    .setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
 @endsection

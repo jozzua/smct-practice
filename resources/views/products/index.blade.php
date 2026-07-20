@@ -16,31 +16,30 @@
                 <form method="POST" action="{{ route('cart.store') }}" class="add-to-cart">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <label class="quantity-field">
-                        <span>Qty</span>
-                        <input
-                            type="number"
-                            name="quantity"
-                            value="1"
-                            min="1"
-                            inputmode="numeric"
-                            autocomplete="off"
-                        >
-                    </label>
-                    <label class="quantity-preset">
-                        <span>Quick pick</span>
-                        <select
-                            aria-label="Choose a quantity"
-                            onchange="this.closest('.add-to-cart').querySelector('[name=quantity]').value = this.value"
-                        >
-                            @for ($quantity = 1; $quantity <= 10; $quantity++)
-                                <option value="{{ $quantity }}">{{ $quantity }}</option>
-                            @endfor
-                        </select>
-                    </label>
+                    <div class="quantity-field">
+                        <label for="quantity-{{ $product->id }}">Qty</label>
+                        <span class="quantity-combo">
+                            <input
+                                id="quantity-{{ $product->id }}"
+                                type="number"
+                                name="quantity"
+                                value="1"
+                                min="1"
+                                list="quantity-options"
+                                inputmode="numeric"
+                                autocomplete="off"
+                            >
+                        </span>
+                    </div>
                     <button type="submit" class="btn btn-primary">Add to cart</button>
                 </form>
             </x-card>
         @endforeach
     </div>
+
+    <datalist id="quantity-options">
+        @for ($quantity = 1; $quantity <= 10; $quantity++)
+            <option value="{{ $quantity }}">
+        @endfor
+    </datalist>
 @endsection

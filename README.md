@@ -1,4 +1,4 @@
-# Maligaya Trading Company — S1 practice project
+# SMCT - S1 practice project
 
 A small, runnable Laravel storefront (products → cart → checkout → orders) used as the
 working repo for Session 1. It exists so the team can practice prompting against real

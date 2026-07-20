@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         $validated = $request->validate([
             'product_id' => ['required', 'exists:products,id'],
-            'quantity' => ['required', 'integer', 'min:1', 'max:10'],
+            'quantity' => ['required', 'integer', 'min:1'],
         ]);
 
         $cart = $request->session()->get('cart', []);

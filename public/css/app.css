@@ -167,9 +167,54 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
     display: flex;
     align-items: end;
     gap: var(--space-2);
+    flex-wrap: wrap;
 }
 
-.add-to-cart input[type="number"] { width: 4rem; }
+.quantity-field,
+.quantity-preset {
+    display: grid;
+    gap: var(--space-1);
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.quantity-field input,
+.quantity-preset select {
+    height: 2.45rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font: inherit;
+    font-size: 0.95rem;
+}
+
+.quantity-field input {
+    width: 5rem;
+    padding: 0 var(--space-2);
+}
+
+.quantity-preset select {
+    min-width: 6.5rem;
+    padding: 0 2rem 0 var(--space-2);
+    appearance: none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--color-brand) 50%),
+        linear-gradient(135deg, var(--color-brand) 50%, transparent 50%);
+    background-position:
+        calc(100% - 1rem) 1rem,
+        calc(100% - 0.65rem) 1rem;
+    background-size: 0.35rem 0.35rem;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.quantity-field input:focus,
+.quantity-preset select:focus {
+    outline: 2px solid var(--color-brand);
+    border-color: var(--color-brand);
+}
 
 /* Checkout */
 .checkout-grid {

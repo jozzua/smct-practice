@@ -53,6 +53,17 @@ class CheckoutTest extends TestCase
         $this->assertSame(0, Order::firstOrFail()->shipping_cents);
     }
 
+    public function test_cart_accepts_quantities_over_ten(): void
+    {
+        $product = Product::factory()->create(['price_cents' => 10000]);
+
+        $this->post('/cart', ['product_id' => $product->id, 'quantity' => 25])
+            ->assertRedirect(route('products.index'))
+            ->assertSessionHasNoErrors();
+
+        $this->assertSame(25, session('cart')[$product->id]);
+    }
+
     public function test_checkout_with_an_empty_cart_is_sent_back_to_products(): void
     {
         $this->post('/checkout', [

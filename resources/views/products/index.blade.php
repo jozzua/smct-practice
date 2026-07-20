@@ -8,7 +8,14 @@
 
     <div class="product-grid">
         @foreach ($products as $product)
-            <x-card :title="$product->name">
+            <div class="card">
+                <img
+                    class="product-thumb"
+                    src="https://picsum.photos/seed/{{ urlencode($product->sku) }}/240"
+                    alt="{{ $product->name }} sample photo"
+                >
+
+                <h2 class="card-title">{{ $product->name }}</h2>
                 <p class="sku">SKU {{ $product->sku }}</p>
                 <p class="price">₱{{ number_format($product->price_cents / 100, 2) }}</p>
                 <p class="muted">{{ $product->description }}</p>
@@ -33,7 +40,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Add to cart</button>
                 </form>
-            </x-card>
+            </div>
         @endforeach
     </div>
 

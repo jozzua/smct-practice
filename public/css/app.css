@@ -138,6 +138,48 @@ h1 { font-size: 1.5rem; margin: var(--space-3) 0 var(--space-1); }
 
 .data-table .num { text-align: right; }
 
+
+/* Search */
+.search-form {
+    margin-bottom: var(--space-3);
+}
+
+.search-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--space-1);
+}
+
+.search-row {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.search-row input {
+    flex: 1;
+    min-width: 0;
+    padding: var(--space-2);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    font: inherit;
+}
+
+.search-row input:focus {
+    outline: 2px solid var(--color-brand);
+    border-color: var(--color-brand);
+}
+
+.empty-table {
+    color: var(--color-muted);
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .search-row {
+        flex-direction: column;
+    }
+}
+
 /* Status badges */
 .badge {
     display: inline-block;

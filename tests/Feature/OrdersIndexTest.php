@@ -53,6 +53,26 @@ class OrdersIndexTest extends TestCase
             ->assertDontSee('#'.$hiddenOrder->id);
     }
 
+
+    public function test_the_orders_index_returns_live_search_partials(): void
+    {
+        $matchingCustomer = Customer::factory()->create(['name' => 'Rosa Villanueva']);
+        $hiddenCustomer = Customer::factory()->create(['name' => 'Marco Dela Cruz']);
+        $matchingOrder = Order::factory()->for($matchingCustomer)->create();
+        $hiddenOrder = Order::factory()->for($hiddenCustomer)->create();
+
+        $this->getJson('/orders?search=Rosa&partial=1')
+            ->assertOk()
+            ->assertJsonPath('count', 1)
+            ->assertJsonPath('label', 'matching orders')
+            ->assertJsonFragment(['count' => 1])
+            ->assertJsonMissing(['html' => '#'.$hiddenOrder->id])
+            ->assertSee('Rosa Villanueva', false)
+            ->assertSee('#'.$matchingOrder->id, false)
+            ->assertDontSee('Marco Dela Cruz', false)
+            ->assertDontSee('#'.$hiddenOrder->id, false);
+    }
+
     public function test_the_orders_index_renders_when_there_are_no_orders(): void
     {
         $this->get('/orders')->assertOk();

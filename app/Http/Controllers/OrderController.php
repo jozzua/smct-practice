@@ -33,6 +33,14 @@ class OrderController extends Controller
             ->latest('placed_at')
             ->get();
 
+        if ($request->boolean('partial')) {
+            return response()->json([
+                'html' => view('orders._rows', ['orders' => $orders])->render(),
+                'count' => $orders->count(),
+                'label' => $search === '' ? 'orders on record' : 'matching orders',
+            ]);
+        }
+
         return view('orders.index', [
             'orders' => $orders,
             'search' => $search,

@@ -20,6 +20,28 @@
 - When a requirement names a record but the requested final value, identifier, or user impact is ambiguous, stop and ask a concise clarifying question before making a production data change.
 - Tests for a data change must assert the intended existing record or stable unique identifier. A test that only proves a fresh seed can create a similar record is insufficient.
 
+## Local runtime files, dev notes, and generated dependencies
+
+- Treat `storage/logs/*`, `storage/framework/sessions/*`, `node_modules/`, `vendor/`, built assets, and other generated runtime or dependency files as local artifacts unless a task explicitly asks otherwise.
+- Do not edit or commit generated log files, session files, dependency directories, or built assets as part of application changes.
+- When investigating recent behavior, check the Laravel log at `storage/logs/laravel.log` when present, relevant local dev logs, any repo-local `dev/` directory, and current TODO notes before changing code.
+- If the repo has no `dev/` directory, dev log, or TODO notes, mention that in the investigation summary instead of inventing one.
+- When inspecting logs or sessions, summarize only relevant findings. Do not expose secrets, session payloads, cookies, tokens, passwords, personal data, or other sensitive values.
+- If a runtime issue requires reproduction, prefer Laravel logs, tests, and targeted Artisan commands over manually changing session files.
+
+## Standard local checks
+
+- Before committing PHP or backend changes, run `composer test` when practical.
+- Before committing frontend asset, Blade, CSS, or JavaScript changes, run `npm run build` when practical.
+- For a fresh checkout setup, use `composer setup`.
+- If a check cannot run because of environment limitations, report the exact command, failure reason, and whether the limitation is local-only.
+
+## Dependency management
+
+- Use Composer for PHP dependencies and npm for frontend dependencies.
+- Do not manually edit files inside `vendor/` or `node_modules/`.
+- Commit lockfile changes only when dependency versions intentionally change.
+
 ## Deployment checklist
 
 When a branding or environment-backed configuration change is approved for deployment:

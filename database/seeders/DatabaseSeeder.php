@@ -30,7 +30,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $products = Product::factory()->count(40)->create();
-        $customers = Customer::factory()->count(600)->create();
+        $drArnulfoReynolds = Customer::factory()->create([
+            'name' => 'Dr. Arnulfo Reynolds',
+            'email' => 'arnulfo.reynolds@example.com',
+            'phone' => '09170000000',
+            'city' => 'Quezon City',
+        ]);
+        $customers = Customer::factory()->count(599)->create()->push($drArnulfoReynolds);
 
         $this->seedOrders($products, $customers);
         $this->seedPaidOrderForDrArnulfoReynolds($products);
@@ -40,7 +46,7 @@ class DatabaseSeeder extends Seeder
      * Orders and their items are bulk-inserted in chunks so a full seed of
      * ~3,000 orders stays under a few seconds on SQLite.
      */
-    private function seedOrders($products, $customers): void
+    private function seedOrders($products, $customers, Customer $drArnulfoReynolds): void
     {
         $now = now();
         $orders = [];
@@ -68,11 +74,13 @@ class DatabaseSeeder extends Seeder
 
             $orders[] = [
                 'id' => $orderId,
-                'customer_id' => $customers->random()->id,
-                'status' => fake()->randomElement([
-                    OrderStatus::Shipped, OrderStatus::Shipped, OrderStatus::Shipped,
-                    OrderStatus::Paid, OrderStatus::Pending, OrderStatus::Cancelled,
-                ])->value,
+                'customer_id' => $orderId === 164 ? $drArnulfoReynolds->id : $customers->random()->id,
+                'status' => $orderId === 164
+                    ? OrderStatus::Paid->value
+                    : fake()->randomElement([
+                        OrderStatus::Shipped, OrderStatus::Shipped, OrderStatus::Shipped,
+                        OrderStatus::Paid, OrderStatus::Pending, OrderStatus::Cancelled,
+                    ])->value,
                 'subtotal_cents' => $subtotal,
                 'vat_cents' => $vat,
                 'shipping_cents' => $shipping,

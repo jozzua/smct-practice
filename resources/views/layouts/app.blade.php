@@ -41,5 +41,7 @@
             <p>{{ config('app.name') }} — demo application. No real customer data.</p>
         </div>
     </footer>
+
+    @stack('scripts')
 </body>
 </html>

@@ -20,8 +20,57 @@ class OrdersIndexTest extends TestCase
 
         $this->get('/orders')
             ->assertOk()
+            ->assertSee('data-auto-search', false)
+            ->assertSee('Results update as you type.')
             ->assertSee('Rosa Villanueva')
             ->assertSee('#'.$order->id);
+    }
+
+
+    public function test_the_orders_index_can_search_by_customer_name(): void
+    {
+        $matchingCustomer = Customer::factory()->create(['name' => 'Rosa Villanueva']);
+        $hiddenCustomer = Customer::factory()->create(['name' => 'Marco Dela Cruz']);
+        $matchingOrder = Order::factory()->for($matchingCustomer)->create();
+        $hiddenOrder = Order::factory()->for($hiddenCustomer)->create();
+
+        $this->get('/orders?search=Rosa')
+            ->assertOk()
+            ->assertSee('Rosa Villanueva')
+            ->assertSee('#'.$matchingOrder->id)
+            ->assertDontSee('Marco Dela Cruz')
+            ->assertDontSee('#'.$hiddenOrder->id);
+    }
+
+    public function test_the_orders_index_can_search_by_order_number(): void
+    {
+        $matchingOrder = Order::factory()->create(['id' => 164]);
+        $hiddenOrder = Order::factory()->create(['id' => 165]);
+
+        $this->get('/orders?search=%23164')
+            ->assertOk()
+            ->assertSee('#'.$matchingOrder->id)
+            ->assertDontSee('#'.$hiddenOrder->id);
+    }
+
+
+    public function test_the_orders_index_returns_live_search_partials(): void
+    {
+        $matchingCustomer = Customer::factory()->create(['name' => 'Rosa Villanueva']);
+        $hiddenCustomer = Customer::factory()->create(['name' => 'Marco Dela Cruz']);
+        $matchingOrder = Order::factory()->for($matchingCustomer)->create();
+        $hiddenOrder = Order::factory()->for($hiddenCustomer)->create();
+
+        $this->getJson('/orders?search=Rosa&partial=1')
+            ->assertOk()
+            ->assertJsonPath('count', 1)
+            ->assertJsonPath('label', 'matching orders')
+            ->assertJsonFragment(['count' => 1])
+            ->assertJsonMissing(['html' => '#'.$hiddenOrder->id])
+            ->assertSee('Rosa Villanueva', false)
+            ->assertSee('#'.$matchingOrder->id, false)
+            ->assertDontSee('Marco Dela Cruz', false)
+            ->assertDontSee('#'.$hiddenOrder->id, false);
     }
 
     public function test_the_orders_index_renders_when_there_are_no_orders(): void

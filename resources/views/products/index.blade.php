@@ -4,16 +4,14 @@
     <h1>{{ config('app.name') }}</h1>
     <p class="page-note">Everything ships nationwide. Free delivery on orders ₱5,000 and up.</p>
 
+
     <div class="product-grid">
         @foreach ($products as $product)
-            <div class="card">
-                <img
-                    class="product-thumb"
-                    src="https://picsum.photos/seed/{{ urlencode($product->sku) }}/240"
-                    alt="{{ $product->name }} sample photo"
-                >
-
-                <h2 class="card-title">{{ $product->name }}</h2>
+            <x-card
+                :title="$product->name"
+                :image="'https://picsum.photos/seed/' . urlencode($product->sku) . '/240'"
+                :image-alt="$product->name . ' sample photo'"
+            >
                 <p class="sku">SKU {{ $product->sku }}</p>
                 <p class="price">₱{{ number_format($product->price_cents / 100, 2) }}</p>
                 <p class="muted">{{ $product->description }}</p>
@@ -38,7 +36,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Add to cart</button>
                 </form>
-            </div>
+            </x-card>
         @endforeach
     </div>
 

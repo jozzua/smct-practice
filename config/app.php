@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'SMCT'),
+    'name' => env('APP_NAME', 'SMCT Trading Company Philippines'),
 
     /*
     |--------------------------------------------------------------------------

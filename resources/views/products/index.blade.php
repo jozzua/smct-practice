@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Products')
-
 @section('content')
     <h1>{{ config('app.name') }}</h1>
     <p class="page-note">Everything ships nationwide. Free delivery on orders ₱5,000 and up.</p>

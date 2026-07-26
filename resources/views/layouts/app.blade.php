@@ -9,7 +9,6 @@
 <body>
     <header class="site-header">
         <div class="container nav-row">
-            <a class="brand" href="{{ route('products.index') }}">{{ config('app.name') }}</a>
             <nav class="site-nav">
                 <a href="{{ route('products.index') }}">Products</a>
                 <a href="{{ route('orders.index') }}">Orders</a>
@@ -25,6 +24,16 @@
                     <a href="{{ route('signup') }}">Sign up</a>
                 @endauth
             </nav>
+            <a class="brand" href="{{ route('products.index') }}">
+                <span class="brand-name">{{ config('app.name') }}</span>
+                <img
+                    class="brand-logo"
+                    src="{{ asset('images/brand/maligaya-trade-seal.png') }}"
+                    alt=""
+                    width="56"
+                    height="56"
+                >
+            </a>
         </div>
     </header>
 

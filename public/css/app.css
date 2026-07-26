@@ -58,15 +58,36 @@ body {
 }
 
 .brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+    gap: 0.65rem;
     color: #fff;
     font-weight: 700;
     font-size: 1.1rem;
+    line-height: 1.15;
+    text-align: right;
     text-decoration: none;
+}
+
+.brand-name {
+    max-width: 14rem;
+}
+
+.brand-logo {
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    flex: 0 0 3.5rem;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 1px rgba(14, 46, 37, 0.35));
 }
 
 .site-nav {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: var(--space-3);
 }
 
@@ -95,6 +116,23 @@ body {
 
 .site-nav .link-button {
     color: #eaf4f0;
+}
+
+@media (max-width: 760px) {
+    .nav-row {
+        flex-wrap: wrap;
+    }
+
+    .brand {
+        order: -1;
+        width: 100%;
+    }
+
+    .site-nav {
+        width: 100%;
+        justify-content: flex-end;
+        gap: var(--space-2) var(--space-3);
+    }
 }
 
 /* Cards — the app's standard surface. */

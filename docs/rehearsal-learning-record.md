@@ -52,12 +52,7 @@ application commit is `7207779`.
 - Updated the ignored local `.env` separately so the rehearsal site resolves the
   restored name.
 
-Before the current pricing snapshot is committed, `main`, `origin/main`, and `HEAD`
-all point to `b350e75`.
-
-## Current uncommitted educational exercise
-
-### Add sale-pricing behavior and its reusable skill
+### `1f413e4` — Add sale-pricing behavior and its reusable skill
 
 Status: implemented and verified locally.
 
@@ -120,7 +115,7 @@ different pricing design.
     and imperative so it is efficient at runtime. Keep rationale, evidence, restore
     points, and classroom discussion in this learning record.
 
-### Replace the Classic Desk Lamp image
+### `3defc82` — Replace the Classic Desk Lamp image
 
 Status: implemented and verified locally.
 
@@ -146,6 +141,58 @@ Status: implemented and verified locally.
    require only the asset and regression coverage.
 3. **Test the extension point.** Verify the new local image, the earlier local image,
    and the remote fallback together so extending the convention does not narrow it.
+
+At the start of the logo exercise, `main` and `origin/main` point to `1f413e4`;
+the current `codex/replace-classic-desk-lamp-image` branch and its upstream point to
+`3defc82`.
+
+## Current educational exercise
+
+### Add the Maligaya Trade Seal to the header
+
+Status: implemented and verified locally, with visual browser inspection unavailable.
+
+- Generated an original heritage-inspired MTC trade seal with the built-in
+  image-generation tool.
+- Used a forest-green, copper, and ivory palette with woven-diamond accents.
+- Generated on a flat magenta chroma-key background, removed the background locally,
+  and saved a 512 × 512 RGBA PNG at
+  `public/images/brand/maligaya-trade-seal.png`.
+- Kept the full company name as live `config('app.name')` text instead of baking it
+  into the image.
+- Placed the company-name text and decorative logo inside the right-aligned header
+  home link, with the logo at the far right.
+- Added responsive header wrapping so the lockup remains right-aligned above the
+  navigation on narrow screens.
+- Used an empty image `alt` because the adjacent link text already provides the
+  accessible company name.
+- Extended `BrandingTest` to verify the configured name, local logo file, logo class,
+  and rendered asset URL.
+
+#### Generation prompt summary
+
+```text
+Create a compact circular heritage trade seal for Maligaya Trading Company:
+an original interlocking MTC monogram with subtle Filipino woven-diamond motifs,
+flat vector-like geometry, forest green, warm copper, and ivory, with no wordmark,
+mockup, watermark, or unrelated text.
+```
+
+#### Verification
+
+- Transparent logo inspection — passed: RGBA output, transparent background, crisp
+  seal silhouette, no visible chroma fringe.
+- `php artisan test tests/Feature/BrandingTest.php` — passed:
+  1 test, 5 assertions.
+- `npm run build` — passed. Vite emitted only the existing optional `fontaine`
+  optimization notice.
+- `composer test` — 18 passed, 1 skipped, and 1 errored on the existing
+  `DatabaseSeeder::seedOrders()` argument mismatch; 96 assertions completed.
+- Rendered local HTML — confirmed the full configured name and logo asset URL appear
+  together in the header brand link.
+- Local logo response — `200 OK`, `image/png`, 164,623 bytes.
+- In-app visual browser inspection — unavailable because no browser backend was
+  connected in this session.
 
 ## Verification record
 
@@ -204,13 +251,13 @@ left untouched.
 Before restoring anything, verify `git status --short --branch`, preserve this
 record, and obtain explicit approval.
 
-- To return committed exercise code to the rehearsal baseline while preserving
-  history, review and revert `f701fbb`, `0c58f79`, and `377f510` in reverse
-  chronological order.
+- To return the active branch to the rehearsal baseline while preserving history,
+  review the educational commits `3defc82`, `1f413e4`, `b350e75`, `f701fbb`,
+  `0c58f79`, and `377f510` in reverse chronological order.
 - Treat `b350e75` and the ignored local `.env` value as separate restore targets.
   If restoring the display name to `SMCT`, keep `SESSION_COOKIE`, `CACHE_PREFIX`,
   and `REDIS_PREFIX` unchanged.
-- Treat the uncommitted sale-pricing files as a separate restore unit; confirm the
-  test run and intended checkpoint before changing them.
+- Treat the header-logo asset, layout, CSS, branding test, and documentation as one
+  restore unit.
 - Do not use seeders as a production data migration, and do not access production
   infrastructure as part of rehearsal restoration.

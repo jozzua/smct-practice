@@ -60,14 +60,14 @@ body {
 .brand {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex: 0 0 auto;
     gap: 0.65rem;
     color: #fff;
     font-weight: 700;
     font-size: 1.1rem;
     line-height: 1.15;
-    text-align: right;
+    text-align: left;
     text-decoration: none;
 }
 

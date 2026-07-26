@@ -15,7 +15,8 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 - Added the repo-scoped `$swap-product-card-photo` and
   `$apply-product-sale-pricing` skills with focused regression coverage.
 - Generated an original Maligaya Trade Seal and added it to a responsive,
-  right-aligned header lockup beside the configured full company name.
+  left-aligned header lockup before the configured full company name, while keeping
+  navigation on the right.
 - Added a rehearsal learning record with the baseline, educational changes,
   verification evidence, teaching points, and restore boundaries.
 

@@ -15,13 +15,21 @@ class BrandingTest extends TestCase
             public_path('images/brand/maligaya-trade-seal.png'),
         );
 
-        $this->get('/products')
-            ->assertOk()
+        $response = $this->get('/products');
+
+        $response->assertOk()
             ->assertSee(config('app.name'))
             ->assertSee('class="brand-logo"', false)
             ->assertSee(
                 asset('images/brand/maligaya-trade-seal.png'),
                 false,
             );
+
+        $response->assertSeeInOrder([
+            'class="brand"',
+            'class="brand-logo"',
+            'class="brand-name"',
+            'class="site-nav"',
+        ], false);
     }
 }

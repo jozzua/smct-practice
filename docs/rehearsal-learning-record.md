@@ -150,7 +150,7 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 ### Add the Maligaya Trade Seal to the header
 
-Status: implemented and verified locally, with visual browser inspection unavailable.
+Status: implemented and verified locally.
 
 - Generated an original heritage-inspired MTC trade seal with the built-in
   image-generation tool.
@@ -160,9 +160,9 @@ Status: implemented and verified locally, with visual browser inspection unavail
   `public/images/brand/maligaya-trade-seal.png`.
 - Kept the full company name as live `config('app.name')` text instead of baking it
   into the image.
-- Placed the company-name text and decorative logo inside the right-aligned header
-  home link, with the logo at the far right.
-- Added responsive header wrapping so the lockup remains right-aligned above the
+- Placed the decorative logo and company-name text inside the left-aligned header
+  home link, with the logo at the far left.
+- Added responsive header wrapping so the lockup remains left-aligned above the
   navigation on narrow screens.
 - Used an empty image `alt` because the adjacent link text already provides the
   accessible company name.
@@ -183,16 +183,16 @@ mockup, watermark, or unrelated text.
 - Transparent logo inspection — passed: RGBA output, transparent background, crisp
   seal silhouette, no visible chroma fringe.
 - `php artisan test tests/Feature/BrandingTest.php` — passed:
-  1 test, 5 assertions.
+  1 test, 6 assertions.
 - `npm run build` — passed. Vite emitted only the existing optional `fontaine`
   optimization notice.
 - `composer test` — 18 passed, 1 skipped, and 1 errored on the existing
-  `DatabaseSeeder::seedOrders()` argument mismatch; 96 assertions completed.
+  `DatabaseSeeder::seedOrders()` argument mismatch; 97 assertions completed.
 - Rendered local HTML — confirmed the full configured name and logo asset URL appear
   together in the header brand link.
 - Local logo response — `200 OK`, `image/png`, 164,623 bytes.
-- In-app visual browser inspection — unavailable because no browser backend was
-  connected in this session.
+- In-app visual browser inspection — confirmed the brand begins at the left edge,
+  the logo appears before the company name, and navigation remains on the right.
 
 ## Verification record
 

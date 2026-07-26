@@ -18,6 +18,11 @@ The [Kanban board](kanban.md) is the source of truth for active work.
   expresses “Maligaya,” using golden-yellow arms and an ivory torso for clear
   contrast against the forest-green header while retaining the responsive
   left-aligned lockup, configured full company name, and right-aligned navigation.
+- Added an Orders-list N+1 regression test that proves query count stays constant
+  from one rendered order to ten while every item count still renders.
+- Replaced the browser-native quantity `datalist` with an accessible storefront
+  picker that expands in the card layout, preserves free numeric entry, and cannot
+  cover the Add to cart button.
 - Added a rehearsal learning record with the baseline, educational changes,
   verification evidence, teaching points, and restore boundaries.
 
@@ -25,8 +30,6 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 
 - Fix the intentionally planted `DatabaseSeeder::seedOrders()` argument mismatch so
   a fresh `php artisan migrate --seed` succeeds.
-- Add a regression test that protects the intentionally planted Orders-list N+1
-  exercise.
 - The admin login feature remains planned but unimplemented; see the
   [admin login PRD](admin-login-prd.md).
 

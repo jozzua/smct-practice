@@ -386,6 +386,8 @@ h1 {
 .quantity-field {
     display: grid;
     gap: var(--space-1);
+    flex: 1 1 8rem;
+    min-width: 8rem;
     color: var(--color-muted);
     font-size: 0.8rem;
     font-weight: 700;
@@ -405,22 +407,16 @@ h1 {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), var(--shadow);
 }
 
+.quantity-picker {
+    display: grid;
+    gap: var(--space-1);
+}
+
 .quantity-field input {
     height: 2.45rem;
     border: 0;
-    background:
-        linear-gradient(90deg, transparent calc(100% - 2.45rem), #fbfaf7 calc(100% - 2.45rem)),
-        linear-gradient(45deg, transparent 50%, var(--color-brand) 50%),
-        linear-gradient(135deg, var(--color-brand) 50%, transparent 50%);
-    background-position:
-        0 0,
-        calc(100% - 1.2rem) 1rem,
-        calc(100% - 0.85rem) 1rem;
-    background-size:
-        100% 100%,
-        0.35rem 0.35rem,
-        0.35rem 0.35rem;
-    background-repeat: no-repeat;
+    border-radius: inherit;
+    background: transparent;
     color: var(--color-ink);
     font: inherit;
     font-size: 0.95rem;
@@ -433,6 +429,73 @@ h1 {
 .quantity-field input::-webkit-inner-spin-button {
     margin: 0;
     -webkit-appearance: none;
+}
+
+.quantity-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: grid;
+    place-items: center;
+    width: 2.45rem;
+    height: 100%;
+    border: 0;
+    border-left: 1px solid var(--color-line);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: #fbfaf7;
+    color: var(--color-brand-dark);
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.quantity-toggle:hover {
+    background: #eef5f2;
+}
+
+.quantity-toggle[aria-expanded="true"] {
+    background: var(--color-brand);
+    color: #fff;
+}
+
+.quantity-options {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(2rem, 1fr));
+    gap: var(--space-1);
+    padding: var(--space-1);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: #fbfaf7;
+    box-shadow: var(--shadow);
+}
+
+.quantity-options[hidden] {
+    display: none;
+}
+
+.quantity-option {
+    min-height: 2rem;
+    border: 1px solid #d5cab9;
+    border-radius: 7px;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.quantity-option:hover,
+.quantity-option:focus-visible {
+    border-color: var(--color-brand);
+    outline: 2px solid #b8d9cf;
+}
+
+.quantity-option[aria-selected="true"] {
+    border-color: var(--color-brand);
+    background: var(--color-brand);
+    color: #fff;
 }
 
 .quantity-combo:hover {

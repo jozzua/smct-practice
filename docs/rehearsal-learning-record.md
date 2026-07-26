@@ -216,6 +216,73 @@ with no seal, crest, border, mockup, or watermark.
   ivory lower body remain visible against that green background, the configured
   company name follows it, and navigation remains on the right.
 
+### Guard the Orders list against N+1 regressions
+
+Status: implemented and verified locally.
+
+- Added a focused test to `OrdersIndexTest` without changing `OrderController`.
+- Created one order with two items, measured the rendered Orders-index query count,
+  then added nine more orders with two items each and measured again.
+- Asserted that query count remains constant as the number of rendered orders grows.
+- Capped the request at two queries: one for orders with item-count subqueries and
+  one for eager-loaded customers.
+- Verified all ten rows render their item count so removing `withCount('items')`
+  cannot produce a misleading lower query count.
+- Kept the test independent of timing and production-scale seeded data.
+
+#### Verification
+
+- `php artisan test tests/Feature/OrdersIndexTest.php` — passed:
+  6 tests, 29 assertions.
+- `vendor/bin/pint --test tests/Feature/OrdersIndexTest.php` — passed after a
+  mechanical class-method spacing fix.
+- `composer test` — 19 passed, 1 skipped, and 1 errored on the existing
+  `DatabaseSeeder::seedOrders()` argument mismatch; 103 assertions completed.
+- The intentional `DatabaseSeeder::seedOrders()` mismatch remains untouched.
+
+### Replace the native quantity dropdown
+
+Status: implemented and verified locally.
+
+- Replaced the unstyleable `<datalist>` popup with an in-page quantity picker.
+- Preserved the number input so customers can still enter any positive quantity.
+- Added eight useful preset buttons inside a semantic listbox, with selected-state,
+  Escape-key, outside-click, and focus-return behavior.
+- Made the menu expand inside the product card instead of floating over the
+  Add to cart button.
+- Added `ProductQuantityPickerTest` to protect the accessible picker contract and
+  prevent the native datalist from returning.
+
+#### Teaching points
+
+1. **Know the browser boundary.** A `<datalist>` popup is rendered by browser and
+   operating-system chrome; its colors and placement cannot be made reliably
+   consistent with the application through CSS.
+2. **Preserve the flexible path.** Quick presets should accelerate common choices,
+   not replace the editable number input or narrow the valid quantities accepted by
+   the backend.
+3. **Fix geometry, not just color.** Expanding the options in document flow removes
+   overlap by construction, rather than relying on a fragile z-index or viewport
+   assumption.
+4. **Test semantics and interaction.** The feature test protects the server-rendered
+   contract, while browser verification checks selection, focus, layout, and visual
+   styling in the real page.
+
+#### Verification
+
+- `php artisan test tests/Feature/ProductQuantityPickerTest.php tests/Feature/CheckoutTest.php`
+  — passed: 5 tests, 27 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductQuantityPickerTest.php` — passed.
+- `npm run build` — passed. Vite emitted only the existing optional `fontaine`
+  optimization notice.
+- `composer test` — 20 passed, 1 skipped, and 1 errored on the existing
+  `DatabaseSeeder::seedOrders()` argument mismatch; 111 assertions completed.
+- In-app browser interaction — confirmed the custom menu has a light storefront
+  surface, does not overlap the cart button, selecting `25` updates and focuses the
+  number input, and the menu closes with the selected option marked.
+- Repository investigation found no `dev/` directory or separate TODO notes; the
+  Kanban board remains the source of truth for follow-up work.
+
 ## Verification record
 
 ### Display-name exercise
@@ -227,8 +294,9 @@ with no seal, crest, border, mockup, or watermark.
 - `composer test` — 17 passed, 1 skipped, and 1 errored on the intentionally planted
   `DatabaseSeeder::seedOrders()` argument mismatch.
 
-The planted seeder mismatch was not changed. The planted Orders-list N+1 was also
-left untouched.
+The planted seeder mismatch was not changed. The Orders-list eager-loading
+implementation was left untouched and is now protected by a query-count regression
+test.
 
 ### Product-photo exercise
 

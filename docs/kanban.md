@@ -7,7 +7,6 @@ one line per task, newest at the top of each section.
 
 - Fix `DatabaseSeeder::seedOrders()` — it is called with 2 arguments but the signature
   requires 3, so `php artisan migrate --seed` currently fails on a fresh database.
-- Add a test that guards the orders list against re-introducing an N+1 query.
 
 ## Doing
 
@@ -15,6 +14,10 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- Native quantity dropdown replaced with an accessible storefront-styled preset
+  picker that does not overlap the Add to cart button.
+- Orders-list N+1 regression test added with a constant query-count guard and rendered
+  item-count coverage.
 - Maligaya logo simplified to a joyful person in the responsive upper-left header
   lockup, before the configured full company name, with navigation retained on the
   right.
@@ -24,7 +27,6 @@ one line per task, newest at the top of each section.
   shipping, and stored order-item prices.
 - Product photos resolved through `<x-card>` and `Product::imageUrl()`, with local
   assets selected by SKU and a deterministic fallback.
-- Quantity input combined with a quick picker on the products page.
 - Live search on the Orders index, with seeded records and tests.
 - Company display name sourced through `config('app.name')` and restored to
   Maligaya Trading Company.

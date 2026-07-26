@@ -9,7 +9,7 @@
         @foreach ($products as $product)
             <x-card
                 :title="$product->name"
-                :image="'https://picsum.photos/seed/' . urlencode($product->sku) . '/240'"
+                :image="$product->imageUrl()"
                 :image-alt="$product->name . ' sample photo'"
             >
                 <p class="sku">SKU {{ $product->sku }}</p>

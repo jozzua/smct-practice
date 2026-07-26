@@ -1,6 +1,6 @@
 # Rehearsal Learning Record
 
-Updated: 2026-07-26 (Asia/Tokyo)
+Updated: 2026-07-27 (Asia/Tokyo)
 
 ## Purpose
 
@@ -148,40 +148,60 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 ## Current educational exercise
 
-### Add the Maligaya Trade Seal to the header
+### Simplify the Maligaya header logo
 
 Status: implemented and verified locally.
 
-- Generated an original heritage-inspired MTC trade seal with the built-in
-  image-generation tool.
-- Used a forest-green, copper, and ivory palette with woven-diamond accents.
+- Generated an original stylized happy-person mark with the built-in
+  image-generation tool to express the meaning of “Maligaya.”
+- Used a compact joyful silhouette, uplifted golden-yellow arms, and an ivory torso
+  that contrast clearly with the existing forest-green header; retained copper for
+  the small smile.
 - Generated on a flat magenta chroma-key background, removed the background locally,
-  and saved a 512 × 512 RGBA PNG at
+  and saved a 1254 × 1254 RGBA PNG at the stable existing asset path
   `public/images/brand/maligaya-trade-seal.png`.
 - Kept the full company name as live `config('app.name')` text instead of baking it
   into the image.
-- Placed the decorative logo and company-name text inside the left-aligned header
-  home link, with the logo at the far left.
-- Added responsive header wrapping so the lockup remains left-aligned above the
-  navigation on narrow screens.
+- Reused the existing left-aligned header lockup, so replacing one shared asset
+  updates every header instance without duplicating markup or URLs.
 - Used an empty image `alt` because the adjacent link text already provides the
   accessible company name.
-- Extended `BrandingTest` to verify the configured name, local logo file, logo class,
-  and rendered asset URL.
+- Kept `BrandingTest` focused on the stable integration contract: configured name,
+  local logo file, logo class, rendered asset URL, and header order.
+
+#### Teaching points
+
+1. **Translate meaning into shape.** “Maligaya” means joyful or happy, so a smiling
+   person with raised arms communicates the brand without relying on initials or
+   decorative complexity.
+2. **Design for the real display size.** A header logo is judged at 56 × 56 pixels;
+   one person, a clear smile, strong contrast, and generous negative space matter
+   more than detail that only works in the full-resolution source.
+3. **Keep brand text in HTML.** The image remains language-neutral and decorative,
+   while `config('app.name')` stays searchable, accessible, configurable, and
+   testable.
+4. **Preserve a stable asset contract.** Replacing the file at the shared asset path
+   updates every layout instance consistently without adding URL lists or duplicating
+   template logic.
+5. **Verify beyond generation.** Inspect transparency and edges, run the focused
+   integration test and frontend build, then check the natural and rendered sizes in
+   the real browser header.
 
 #### Generation prompt summary
 
 ```text
-Create a compact circular heritage trade seal for Maligaya Trading Company:
-an original interlocking MTC monogram with subtle Filipino woven-diamond motifs,
-flat vector-like geometry, forest green, warm copper, and ivory, with no wordmark,
-mockup, watermark, or unrelated text.
+Create a compact website-header logo for “Maligaya”: one simplified, geometric,
+vector-style happy person with a circular smiling head and uplifted open arms.
+Use bright golden yellow for the raised arms, warm copper for the smile, and ivory
+for the head and torso so the full silhouette contrasts with the forest-green
+header. Keep it centered, text-free, isolated, and readable at 56 × 56 pixels,
+with no seal, crest, border, mockup, or watermark.
 ```
 
 #### Verification
 
-- Transparent logo inspection — passed: RGBA output, transparent background, crisp
-  seal silhouette, no visible chroma fringe.
+- Transparent logo inspection — passed: 1254 × 1254 RGBA output, transparent
+  background, crisp joyful-person silhouette, and no visible chroma fringe.
 - `php artisan test tests/Feature/BrandingTest.php` — passed:
   1 test, 6 assertions.
 - `npm run build` — passed. Vite emitted only the existing optional `fontaine`
@@ -190,9 +210,11 @@ mockup, watermark, or unrelated text.
   `DatabaseSeeder::seedOrders()` argument mismatch; 97 assertions completed.
 - Rendered local HTML — confirmed the full configured name and logo asset URL appear
   together in the header brand link.
-- Local logo response — `200 OK`, `image/png`, 164,623 bytes.
-- In-app visual browser inspection — confirmed the brand begins at the left edge,
-  the logo appears before the company name, and navigation remains on the right.
+- Local logo response — `200 OK`, `image/png`, 262,045 bytes.
+- In-app visual browser inspection — confirmed the 1254 × 1254 source loads at
+  56 × 56 in the `rgb(29, 111, 92)` upper-left header, the golden-yellow arms and
+  ivory lower body remain visible against that green background, the configured
+  company name follows it, and navigation remains on the right.
 
 ## Verification record
 

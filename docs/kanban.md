@@ -15,8 +15,9 @@ one line per task, newest at the top of each section.
 
 ## Done
 
-- Maligaya Trade Seal added to the responsive upper-left header lockup before the
-  configured full company name, with navigation retained on the right.
+- Maligaya logo simplified to a joyful person in the responsive upper-left header
+  lockup, before the configured full company name, with navigation retained on the
+  right.
 - Rehearsal learning record added with educational checkpoints, verification
   evidence, and restore boundaries.
 - Sale pricing centralized and applied consistently to the catalog, checkout, VAT,

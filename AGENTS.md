@@ -2,7 +2,7 @@
 
 ## Branding and company name
 
-- The current customer-facing company name is `SMCT`.
+- The current customer-facing company name is `Maligaya Trading Company`.
 - Use `config('app.name')` for customer-visible company-name text in Blade views. Do not hard-code the company name in individual pages.
 - Before changing branding, search the repository for the current and proposed names. Review configuration, Blade views, email templates, metadata, documentation, and tests.
 - `APP_NAME` is the source for Laravel's application name. Updating `.env.example` or a default in `config/app.php` does **not** update an existing local or production `.env` value; an actual environment value overrides both.

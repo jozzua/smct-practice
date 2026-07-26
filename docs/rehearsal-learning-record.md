@@ -120,6 +120,33 @@ different pricing design.
     and imperative so it is efficient at runtime. Keep rationale, evidence, restore
     points, and classroom discussion in this learning record.
 
+### Replace the Classic Desk Lamp image
+
+Status: implemented and verified locally.
+
+- Selected the product by SKU `XK-0093`, not by the display name.
+- Downloaded `Black desk lamp.jpg` from Wikimedia Commons:
+  `https://commons.wikimedia.org/wiki/File:Black_desk_lamp.jpg`.
+- The source file is dedicated to the public domain under CC0 1.0 and may be
+  modified or used commercially without permission.
+- Saved the original 2,444 × 2,447 grayscale JPEG as
+  `public/images/products/XK-0093.jpeg`.
+- Reused `Product::imageUrl()` without adding a URL array, SKU conditional, model
+  edit, or Blade edit.
+- Extended `ProductCardPhotoTest` to cover both local SKU images and one fallback
+  SKU.
+
+#### Teaching points
+
+1. **Search with licensing in mind.** “Find an image online” is not only a visual
+   search; suitability includes permission to reuse, source provenance, resolution,
+   and crop compatibility.
+2. **Prefer a convention over another code branch.** Once
+   `{rawurlencode(SKU)}.jpeg` is established, adding the second product image should
+   require only the asset and regression coverage.
+3. **Test the extension point.** Verify the new local image, the earlier local image,
+   and the remote fallback together so extending the convention does not narrow it.
+
 ## Verification record
 
 ### Display-name exercise
@@ -137,6 +164,17 @@ left untouched.
 ### Product-photo exercise
 
 `ProductCardPhotoTest` was included in the focused pre-commit run below and passed.
+
+#### Classic Desk Lamp image
+
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` — passed:
+  1 test, 19 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductCardPhotoTest.php` — passed.
+- `composer test` — 18 passed, 1 skipped, and 1 errored on the existing
+  `DatabaseSeeder::seedOrders()` argument mismatch; 93 assertions completed.
+- Browser verification — confirmed the Classic Desk Lamp card for SKU `XK-0093`
+  loads `/images/products/XK-0093.jpeg` at 2,444 × 2,447 and remains legible within
+  the circular product crop.
 
 ### Sale-pricing exercise
 

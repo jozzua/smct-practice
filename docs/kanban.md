@@ -5,6 +5,12 @@ one line per task, newest at the top of each section.
 
 ## Todo
 
+- Give a live catalog product a real photo by invoking `$swap-product-card-photo` —
+  spec: [[live-photo-skill-prd]]
+- Catalog search by name or SKU — spec: [[catalog-search-prd]]
+- Honor the free-delivery-₱5,000+ promise at checkout — spec: [[free-shipping-prd]]
+- Product detail page at /products/{sku} — spec: [[product-detail-page-prd]]
+- Order status filter tabs on the Orders index — spec: [[order-status-filter-prd]]
 - Fix `DatabaseSeeder::seedOrders()` — it is called with 2 arguments but the signature
   requires 3, so `php artisan migrate --seed` currently fails on a fresh database.
 

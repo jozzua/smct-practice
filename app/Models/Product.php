@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable(['name', 'sku', 'price_cents', 'description'])]
 class Product extends Model
 {
+    private const CLASSIC_AIRPOT_SKU = 'XH-5832';
+
+    private const CLASSIC_AIRPOT_SALE_PRICE_CENTS = 129900;
+
     /** @use HasFactory<ProductFactory> */
     use HasFactory;
 
@@ -23,5 +27,25 @@ class Product extends Model
         }
 
         return "https://picsum.photos/seed/{$encodedSku}/240";
+    }
+
+    public function salePriceCents(): int
+    {
+        if ($this->sku === self::CLASSIC_AIRPOT_SKU) {
+            return self::CLASSIC_AIRPOT_SALE_PRICE_CENTS;
+        }
+
+        return intdiv($this->price_cents, 2);
+    }
+
+    public function discountPercentage(): int
+    {
+        if ($this->price_cents === 0) {
+            return 0;
+        }
+
+        return (int) round(
+            ($this->price_cents - $this->salePriceCents()) / $this->price_cents * 100,
+        );
     }
 }

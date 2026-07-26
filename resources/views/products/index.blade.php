@@ -13,7 +13,11 @@
                 :image-alt="$product->name . ' sample photo'"
             >
                 <p class="sku">SKU {{ $product->sku }}</p>
-                <p class="price">₱{{ number_format($product->price_cents / 100, 2) }}</p>
+                <p class="price">
+                    <del class="price-original">₱{{ number_format($product->price_cents / 100, 2) }}</del>
+                    <span class="price-sale">₱{{ number_format($product->salePriceCents() / 100, 2) }}</span>
+                    <span class="price-discount">{{ $product->discountPercentage() }}% off</span>
+                </p>
                 <p class="muted">{{ $product->description }}</p>
 
                 <form method="POST" action="{{ route('cart.store') }}" class="add-to-cart">

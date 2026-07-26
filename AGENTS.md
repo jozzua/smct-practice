@@ -29,6 +29,16 @@
 - When inspecting logs or sessions, summarize only relevant findings. Do not expose secrets, session payloads, cookies, tokens, passwords, personal data, or other sensitive values.
 - If a runtime issue requires reproduction, prefer Laravel logs, tests, and targeted Artisan commands over manually changing session files.
 
+## Educational rehearsal and restore points
+
+- Treat rehearsal changes as educational exercises rather than production work.
+- Keep `docs/rehearsal-learning-record.md` current with the baseline commit, exercise
+  intent, affected files, and verification results.
+- Distinguish committed exercises, tracked working-tree changes, and ignored local
+  environment changes so they can be restored independently.
+- Do not reset, revert, discard, or force-push rehearsal work without explicit user
+  approval. Verify the exact restore target and preserve the learning record first.
+
 ## Standard local checks
 
 - Before committing PHP or backend changes, run `composer test` when practical.

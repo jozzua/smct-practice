@@ -28,19 +28,20 @@ class CheckoutTest extends TestCase
         $order = Order::firstOrFail();
         $response->assertRedirect(route('checkout.thanks', $order));
 
-        // ₱200 subtotal + 12% VAT (₱24) + ₱99 flat delivery = ₱323
-        $this->assertSame(20000, $order->subtotal_cents);
-        $this->assertSame(2400, $order->vat_cents);
+        // ₱100 sale subtotal + 12% VAT (₱12) + ₱99 flat delivery = ₱211
+        $this->assertSame(10000, $order->subtotal_cents);
+        $this->assertSame(1200, $order->vat_cents);
         $this->assertSame(9900, $order->shipping_cents);
-        $this->assertSame(32300, $order->total_cents);
+        $this->assertSame(21100, $order->total_cents);
 
         $this->assertSame(1, $order->items()->count());
+        $this->assertSame(5000, $order->items()->firstOrFail()->unit_price_cents);
         $this->assertSame('ana@example.com', $order->customer->email);
     }
 
     public function test_orders_over_the_threshold_get_free_delivery(): void
     {
-        $product = Product::factory()->create(['price_cents' => 500000]);
+        $product = Product::factory()->create(['price_cents' => 1000000]);
 
         $this->post('/cart', ['product_id' => $product->id, 'quantity' => 1]);
         $this->post('/checkout', [

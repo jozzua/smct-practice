@@ -27,8 +27,11 @@
                             <tr>
                                 <td>{{ $product->name }}</td>
                                 <td class="num">{{ $cart[$product->id] }}</td>
-                                <td class="num">₱{{ number_format($product->price_cents / 100, 2) }}</td>
-                                <td class="num">₱{{ number_format($product->price_cents * $cart[$product->id] / 100, 2) }}</td>
+                                <td class="num">
+                                    <del class="checkout-price-original">₱{{ number_format($product->price_cents / 100, 2) }}</del>
+                                    <strong class="checkout-price-sale">₱{{ number_format($product->salePriceCents() / 100, 2) }}</strong>
+                                </td>
+                                <td class="num">₱{{ number_format($product->salePriceCents() * $cart[$product->id] / 100, 2) }}</td>
                                 <td>
                                     <form method="POST" action="{{ route('cart.destroy', $product) }}">
                                         @csrf

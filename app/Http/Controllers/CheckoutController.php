@@ -78,7 +78,7 @@ class CheckoutController extends Controller
                 $order->items()->create([
                     'product_id' => $product->id,
                     'quantity' => $cart[$product->id],
-                    'unit_price_cents' => $product->price_cents,
+                    'unit_price_cents' => $product->salePriceCents(),
                 ]);
             }
 
@@ -113,7 +113,7 @@ class CheckoutController extends Controller
         // VAT is computed per line so each line's tax stays reportable on its
         // own if part of the order is cancelled later.
         foreach ($products as $product) {
-            $lineAmount = $product->price_cents * $cart[$product->id];
+            $lineAmount = $product->salePriceCents() * $cart[$product->id];
             $subtotal += $lineAmount;
             $vat += (int) round($lineAmount * self::VAT_RATE);
         }

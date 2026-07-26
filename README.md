@@ -17,6 +17,8 @@ and product is generated.
 
 - [Development log](docs/development-log.md) — recent changes, current status, and
   known follow-up work.
+- [Rehearsal learning record](docs/rehearsal-learning-record.md) — educational
+  experiments, verification results, and restore points.
 - [Kanban board](docs/kanban.md) — shared Todo, Doing, and Done items.
 - [Admin login PRD](docs/admin-login-prd.md) — requirements for the planned admin
   access-control foundation.

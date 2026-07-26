@@ -29,16 +29,22 @@ class ProductCardPhotoTest extends TestCase
                 'sku' => 'XH-5832',
             ]),
             Product::factory()->create([
+                'name' => 'Classic Desk Lamp',
+                'sku' => 'XK-0093',
+            ]),
+            Product::factory()->create([
                 'name' => 'Portable Electric Fan',
                 'sku' => 'EF 2002',
             ]),
         ];
 
         $this->assertFileExists(public_path('images/products/XH-5832.jpeg'));
+        $this->assertFileExists(public_path('images/products/XK-0093.jpeg'));
         $this->assertSame('/images/products/XH-5832.jpeg', $products[0]->imageUrl());
+        $this->assertSame('/images/products/XK-0093.jpeg', $products[1]->imageUrl());
         $this->assertSame(
             'https://picsum.photos/seed/EF%202002/240',
-            $products[1]->imageUrl(),
+            $products[2]->imageUrl(),
         );
 
         $response = $this->get(route('products.index'));

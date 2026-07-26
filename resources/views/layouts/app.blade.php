@@ -9,7 +9,16 @@
 <body>
     <header class="site-header">
         <div class="container nav-row">
-            <a class="brand" href="{{ route('products.index') }}">{{ config('app.name') }}</a>
+            <a class="brand" href="{{ route('products.index') }}">
+                <img
+                    class="brand-logo"
+                    src="{{ asset('images/brand/maligaya-trade-seal.png') }}"
+                    alt=""
+                    width="56"
+                    height="56"
+                >
+                <span class="brand-name">{{ config('app.name') }}</span>
+            </a>
             <nav class="site-nav">
                 <a href="{{ route('products.index') }}">Products</a>
                 <a href="{{ route('orders.index') }}">Orders</a>

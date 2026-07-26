@@ -1,6 +1,6 @@
 # Rehearsal Learning Record
 
-Updated: 2026-07-26 (Asia/Tokyo)
+Updated: 2026-07-27 (Asia/Tokyo)
 
 ## Purpose
 
@@ -52,12 +52,7 @@ application commit is `7207779`.
 - Updated the ignored local `.env` separately so the rehearsal site resolves the
   restored name.
 
-Before the current pricing snapshot is committed, `main`, `origin/main`, and `HEAD`
-all point to `b350e75`.
-
-## Current uncommitted educational exercise
-
-### Add sale-pricing behavior and its reusable skill
+### `1f413e4` — Add sale-pricing behavior and its reusable skill
 
 Status: implemented and verified locally.
 
@@ -120,6 +115,174 @@ different pricing design.
     and imperative so it is efficient at runtime. Keep rationale, evidence, restore
     points, and classroom discussion in this learning record.
 
+### `3defc82` — Replace the Classic Desk Lamp image
+
+Status: implemented and verified locally.
+
+- Selected the product by SKU `XK-0093`, not by the display name.
+- Downloaded `Black desk lamp.jpg` from Wikimedia Commons:
+  `https://commons.wikimedia.org/wiki/File:Black_desk_lamp.jpg`.
+- The source file is dedicated to the public domain under CC0 1.0 and may be
+  modified or used commercially without permission.
+- Saved the original 2,444 × 2,447 grayscale JPEG as
+  `public/images/products/XK-0093.jpeg`.
+- Reused `Product::imageUrl()` without adding a URL array, SKU conditional, model
+  edit, or Blade edit.
+- Extended `ProductCardPhotoTest` to cover both local SKU images and one fallback
+  SKU.
+
+#### Teaching points
+
+1. **Search with licensing in mind.** “Find an image online” is not only a visual
+   search; suitability includes permission to reuse, source provenance, resolution,
+   and crop compatibility.
+2. **Prefer a convention over another code branch.** Once
+   `{rawurlencode(SKU)}.jpeg` is established, adding the second product image should
+   require only the asset and regression coverage.
+3. **Test the extension point.** Verify the new local image, the earlier local image,
+   and the remote fallback together so extending the convention does not narrow it.
+
+At the start of the logo exercise, `main` and `origin/main` point to `1f413e4`;
+the current `codex/replace-classic-desk-lamp-image` branch and its upstream point to
+`3defc82`.
+
+## Current educational exercise
+
+### Simplify the Maligaya header logo
+
+Status: implemented and verified locally.
+
+- Generated an original stylized happy-person mark with the built-in
+  image-generation tool to express the meaning of “Maligaya.”
+- Used a compact joyful silhouette, uplifted golden-yellow arms, and an ivory torso
+  that contrast clearly with the existing forest-green header; retained copper for
+  the small smile.
+- Generated on a flat magenta chroma-key background, removed the background locally,
+  and saved a 1254 × 1254 RGBA PNG at the stable existing asset path
+  `public/images/brand/maligaya-trade-seal.png`.
+- Kept the full company name as live `config('app.name')` text instead of baking it
+  into the image.
+- Reused the existing left-aligned header lockup, so replacing one shared asset
+  updates every header instance without duplicating markup or URLs.
+- Used an empty image `alt` because the adjacent link text already provides the
+  accessible company name.
+- Kept `BrandingTest` focused on the stable integration contract: configured name,
+  local logo file, logo class, rendered asset URL, and header order.
+
+#### Teaching points
+
+1. **Translate meaning into shape.** “Maligaya” means joyful or happy, so a smiling
+   person with raised arms communicates the brand without relying on initials or
+   decorative complexity.
+2. **Design for the real display size.** A header logo is judged at 56 × 56 pixels;
+   one person, a clear smile, strong contrast, and generous negative space matter
+   more than detail that only works in the full-resolution source.
+3. **Keep brand text in HTML.** The image remains language-neutral and decorative,
+   while `config('app.name')` stays searchable, accessible, configurable, and
+   testable.
+4. **Preserve a stable asset contract.** Replacing the file at the shared asset path
+   updates every layout instance consistently without adding URL lists or duplicating
+   template logic.
+5. **Verify beyond generation.** Inspect transparency and edges, run the focused
+   integration test and frontend build, then check the natural and rendered sizes in
+   the real browser header.
+
+#### Generation prompt summary
+
+```text
+Create a compact website-header logo for “Maligaya”: one simplified, geometric,
+vector-style happy person with a circular smiling head and uplifted open arms.
+Use bright golden yellow for the raised arms, warm copper for the smile, and ivory
+for the head and torso so the full silhouette contrasts with the forest-green
+header. Keep it centered, text-free, isolated, and readable at 56 × 56 pixels,
+with no seal, crest, border, mockup, or watermark.
+```
+
+#### Verification
+
+- Transparent logo inspection — passed: 1254 × 1254 RGBA output, transparent
+  background, crisp joyful-person silhouette, and no visible chroma fringe.
+- `php artisan test tests/Feature/BrandingTest.php` — passed:
+  1 test, 6 assertions.
+- `npm run build` — passed. Vite emitted only the existing optional `fontaine`
+  optimization notice.
+- `composer test` — 18 passed, 1 skipped, and 1 errored on the existing
+  `DatabaseSeeder::seedOrders()` argument mismatch; 97 assertions completed.
+- Rendered local HTML — confirmed the full configured name and logo asset URL appear
+  together in the header brand link.
+- Local logo response — `200 OK`, `image/png`, 262,045 bytes.
+- In-app visual browser inspection — confirmed the 1254 × 1254 source loads at
+  56 × 56 in the `rgb(29, 111, 92)` upper-left header, the golden-yellow arms and
+  ivory lower body remain visible against that green background, the configured
+  company name follows it, and navigation remains on the right.
+
+### Guard the Orders list against N+1 regressions
+
+Status: implemented and verified locally.
+
+- Added a focused test to `OrdersIndexTest` without changing `OrderController`.
+- Created one order with two items, measured the rendered Orders-index query count,
+  then added nine more orders with two items each and measured again.
+- Asserted that query count remains constant as the number of rendered orders grows.
+- Capped the request at two queries: one for orders with item-count subqueries and
+  one for eager-loaded customers.
+- Verified all ten rows render their item count so removing `withCount('items')`
+  cannot produce a misleading lower query count.
+- Kept the test independent of timing and production-scale seeded data.
+
+#### Verification
+
+- `php artisan test tests/Feature/OrdersIndexTest.php` — passed:
+  6 tests, 29 assertions.
+- `vendor/bin/pint --test tests/Feature/OrdersIndexTest.php` — passed after a
+  mechanical class-method spacing fix.
+- `composer test` — 19 passed, 1 skipped, and 1 errored on the existing
+  `DatabaseSeeder::seedOrders()` argument mismatch; 103 assertions completed.
+- The intentional `DatabaseSeeder::seedOrders()` mismatch remains untouched.
+
+### Replace the native quantity dropdown
+
+Status: implemented and verified locally.
+
+- Replaced the unstyleable `<datalist>` popup with an in-page quantity picker.
+- Preserved the number input so customers can still enter any positive quantity.
+- Added eight useful preset buttons inside a semantic listbox, with selected-state,
+  Escape-key, outside-click, and focus-return behavior.
+- Made the menu expand inside the product card instead of floating over the
+  Add to cart button.
+- Added `ProductQuantityPickerTest` to protect the accessible picker contract and
+  prevent the native datalist from returning.
+
+#### Teaching points
+
+1. **Know the browser boundary.** A `<datalist>` popup is rendered by browser and
+   operating-system chrome; its colors and placement cannot be made reliably
+   consistent with the application through CSS.
+2. **Preserve the flexible path.** Quick presets should accelerate common choices,
+   not replace the editable number input or narrow the valid quantities accepted by
+   the backend.
+3. **Fix geometry, not just color.** Expanding the options in document flow removes
+   overlap by construction, rather than relying on a fragile z-index or viewport
+   assumption.
+4. **Test semantics and interaction.** The feature test protects the server-rendered
+   contract, while browser verification checks selection, focus, layout, and visual
+   styling in the real page.
+
+#### Verification
+
+- `php artisan test tests/Feature/ProductQuantityPickerTest.php tests/Feature/CheckoutTest.php`
+  — passed: 5 tests, 27 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductQuantityPickerTest.php` — passed.
+- `npm run build` — passed. Vite emitted only the existing optional `fontaine`
+  optimization notice.
+- `composer test` — 20 passed, 1 skipped, and 1 errored on the existing
+  `DatabaseSeeder::seedOrders()` argument mismatch; 111 assertions completed.
+- In-app browser interaction — confirmed the custom menu has a light storefront
+  surface, does not overlap the cart button, selecting `25` updates and focuses the
+  number input, and the menu closes with the selected option marked.
+- Repository investigation found no `dev/` directory or separate TODO notes; the
+  Kanban board remains the source of truth for follow-up work.
+
 ## Verification record
 
 ### Display-name exercise
@@ -131,12 +294,24 @@ different pricing design.
 - `composer test` — 17 passed, 1 skipped, and 1 errored on the intentionally planted
   `DatabaseSeeder::seedOrders()` argument mismatch.
 
-The planted seeder mismatch was not changed. The planted Orders-list N+1 was also
-left untouched.
+The planted seeder mismatch was not changed. The Orders-list eager-loading
+implementation was left untouched and is now protected by a query-count regression
+test.
 
 ### Product-photo exercise
 
 `ProductCardPhotoTest` was included in the focused pre-commit run below and passed.
+
+#### Classic Desk Lamp image
+
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` — passed:
+  1 test, 19 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductCardPhotoTest.php` — passed.
+- `composer test` — 18 passed, 1 skipped, and 1 errored on the existing
+  `DatabaseSeeder::seedOrders()` argument mismatch; 93 assertions completed.
+- Browser verification — confirmed the Classic Desk Lamp card for SKU `XK-0093`
+  loads `/images/products/XK-0093.jpeg` at 2,444 × 2,447 and remains legible within
+  the circular product crop.
 
 ### Sale-pricing exercise
 
@@ -166,13 +341,13 @@ left untouched.
 Before restoring anything, verify `git status --short --branch`, preserve this
 record, and obtain explicit approval.
 
-- To return committed exercise code to the rehearsal baseline while preserving
-  history, review and revert `f701fbb`, `0c58f79`, and `377f510` in reverse
-  chronological order.
+- To return the active branch to the rehearsal baseline while preserving history,
+  review the educational commits `3defc82`, `1f413e4`, `b350e75`, `f701fbb`,
+  `0c58f79`, and `377f510` in reverse chronological order.
 - Treat `b350e75` and the ignored local `.env` value as separate restore targets.
   If restoring the display name to `SMCT`, keep `SESSION_COOKIE`, `CACHE_PREFIX`,
   and `REDIS_PREFIX` unchanged.
-- Treat the uncommitted sale-pricing files as a separate restore unit; confirm the
-  test run and intended checkpoint before changing them.
+- Treat the header-logo asset, layout, CSS, branding test, and documentation as one
+  restore unit.
 - Do not use seeders as a production data migration, and do not access production
   infrastructure as part of rehearsal restoration.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Swap Product Card Photo"
+  short_description: "Swap catalog photos without breaking card conventions"
+  default_prompt: "Use $swap-product-card-photo to change a catalog product photo safely and verify it with a passing test."

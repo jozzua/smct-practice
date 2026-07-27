@@ -16,6 +16,8 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- Real product photo added for live SKU `PP-1112` by invoking
+  `$swap-product-card-photo`.
 - Live catalog product photo shipped via `$swap-product-card-photo`, re-keyed in
   review from the local-seed SKU to the live SKU `LI-8867` (PR #17) —
   spec: [[live-photo-skill-prd]].

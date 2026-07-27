@@ -152,7 +152,7 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 Status: implemented and verified locally.
 
-- Selected the product by exact SKU `QL-0101`, not by its display name or catalog
+- Selected the product by exact live SKU `LI-8867`, not by its display name or catalog
   position.
 - Downloaded `Electric Iron, c. 1901 - Museum of Science and Industry (Chicago) -
   DSC06464.JPG` by Daderot from Wikimedia Commons:
@@ -160,17 +160,18 @@ Status: implemented and verified locally.
 - The source is dedicated to the public domain under CC0 1.0 and may be copied,
   modified, distributed, and used commercially without permission.
 - Saved the 960 × 725 JPEG preview as
-  `public/images/products/QL-0101.jpeg`.
+  `public/images/products/LI-8867.jpeg`.
 - Reused `Product::imageUrl()` and the existing `<x-card>` image contract without
   changing the product model, Blade view, or card component.
 - Extended `ProductCardPhotoTest` to protect the new local image while retaining
   coverage for the other local SKU images and the encoded remote fallback.
-- Affected files: `public/images/products/QL-0101.jpeg`,
+- Affected files: `public/images/products/LI-8867.jpeg`,
   `tests/Feature/ProductCardPhotoTest.php`, `docs/kanban.md`,
   `docs/development-log.md`, and `docs/rehearsal-learning-record.md`.
-- Commit boundary: the asset, focused test, and initial Doing-board entry are
-  committed in `9a23f41`; the completed board state and supporting development and
-  learning notes remain tracked working-tree changes.
+- Commit boundary: the first local pass used placeholder SKU `QL-0101` in
+  `9a23f41`; remote commit `efbde23` re-keyed the same photo to confirmed live SKU
+  `LI-8867`. The merge resolution keeps the live-SKU path and removes the obsolete
+  duplicate.
 
 #### Verification
 
@@ -181,10 +182,10 @@ Status: implemented and verified locally.
 - `npm run build` — passed; Vite emitted only the existing optional `fontaine`
   optimization notice.
 - Asset inspection — confirmed a valid 960 × 725 baseline JPEG.
-- In-app browser inspection — confirmed SKU `QL-0101` renders
-  `/images/products/QL-0101.jpeg` with `Classic Flat Iron sample photo` alt text;
-  the image loads at its natural dimensions and displays in the intended 112 × 112
-  circular product-card crop.
+- Earlier in-app browser inspection confirmed the same source image and
+  `Classic Flat Iron sample photo` alt text render correctly in the intended
+  112 × 112 circular product-card crop. Deployment and live-page verification for
+  corrected SKU `LI-8867` remain outstanding.
 
 ### Simplify the Maligaya header logo
 
@@ -392,6 +393,28 @@ test.
 - Browser verification — confirmed the Classic Desk Lamp card for SKU `XK-0093`
   loads `/images/products/XK-0093.jpeg` at 2,444 × 2,447 and remains legible within
   the circular product crop.
+
+#### Premium Gas Stove image
+
+Status: implemented locally for SKU `PP-1112`.
+
+- Used `$swap-product-card-photo` to keep the change on the SKU-based resolver path.
+- Generated a clean catalog product photo of a premium two-burner gas stove.
+- Saved the final JPEG at `public/images/products/PP-1112.jpeg`, so
+  `Product::imageUrl()` resolves the exact live SKU without model or view changes.
+- Extended `ProductCardPhotoTest` to assert the `PP-1112` asset exists and renders
+  through the catalog card alongside the previous local images and fallback SKU.
+
+#### Verification
+
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` with the project-local
+  PHP runtime after rebasing onto current `main` — passed: 1 test, 27 assertions.
+- `composer test` with the project-local PHP runtime — 20 passed, 1 skipped, and
+  1 errored on the existing `DatabaseSeeder::seedOrders()` argument mismatch;
+  119 assertions completed.
+- Repository investigation found no `storage/logs/laravel.log`, no repo-local
+  `dev/` directory, and no separate TODO notes; the Kanban board remains the
+  source of truth for follow-up work.
 
 ### Sale-pricing exercise
 

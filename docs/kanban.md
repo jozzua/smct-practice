@@ -12,12 +12,14 @@ one line per task, newest at the top of each section.
 
 ## Doing
 
-- Give live catalog product SKU `QL-0101` a real photo through
+- Give live catalog product SKU `LI-8867` a real photo through
   `$swap-product-card-photo`; implementation is merged locally and awaits
   deployment and live-page verification. — Codex — spec: [[live-photo-skill-prd]]
 
 ## Done
 
+- Real product photo added for live SKU `PP-1112` by invoking
+  `$swap-product-card-photo`.
 - `DatabaseSeeder::seedOrders()` now receives its required stable customer argument,
   so fresh database migration and seeding succeeds.
 - Native quantity dropdown replaced with an accessible storefront-styled preset

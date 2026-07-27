@@ -11,7 +11,7 @@ The [Kanban board](kanban.md) is the source of truth for active work.
   `APP_NAME` and `config('app.name')` while preserving the existing session, cache,
   and Redis identifiers.
 - Established `Product::imageUrl()` as the single SKU-based product-photo resolver,
-  with local images for SKUs `XH-5832` and `XK-0093` and a deterministic fallback.
+  with local images for SKUs `MF-5120` and `XK-0093` and a deterministic fallback.
 - Added consistent sale pricing across the catalog, checkout calculations, VAT,
   shipping thresholds, and stored order-item unit prices.
 - Added the repo-scoped `$swap-product-card-photo` and

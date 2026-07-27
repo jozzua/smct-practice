@@ -26,7 +26,7 @@ class ProductCardPhotoTest extends TestCase
         $products = [
             Product::factory()->create([
                 'name' => 'Classic Airpot',
-                'sku' => 'XH-5832',
+                'sku' => 'MF-5120',
             ]),
             Product::factory()->create([
                 'name' => 'Classic Desk Lamp',
@@ -46,11 +46,11 @@ class ProductCardPhotoTest extends TestCase
             ]),
         ];
 
-        $this->assertFileExists(public_path('images/products/XH-5832.jpeg'));
+        $this->assertFileExists(public_path('images/products/MF-5120.jpeg'));
         $this->assertFileExists(public_path('images/products/XK-0093.jpeg'));
         $this->assertFileExists(public_path('images/products/LI-8867.jpeg'));
         $this->assertFileExists(public_path('images/products/PP-1112.jpeg'));
-        $this->assertSame('/images/products/XH-5832.jpeg', $products[0]->imageUrl());
+        $this->assertSame('/images/products/MF-5120.jpeg', $products[0]->imageUrl());
         $this->assertSame('/images/products/XK-0093.jpeg', $products[1]->imageUrl());
         $this->assertSame('/images/products/LI-8867.jpeg', $products[2]->imageUrl());
         $this->assertSame('/images/products/PP-1112.jpeg', $products[3]->imageUrl());

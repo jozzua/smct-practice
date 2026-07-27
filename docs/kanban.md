@@ -17,6 +17,8 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- Live Classic Floor Mat SKU `YS-7893` given a real public-domain textile-mat
+  photo through `$swap-product-card-photo`.
 - Real product photo added for live SKU `PP-1112` by invoking
   `$swap-product-card-photo`.
 - Live Classic Airpot SKU `CQ-8868` given a real vintage pump-pot photo through

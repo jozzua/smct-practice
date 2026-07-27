@@ -148,6 +148,38 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 ## Current educational exercise
 
+### Replace the live Classic Floor Mat photo
+
+Status: implemented.
+
+- Selected the current local product by stable SKU `YS-7893`; it is product ID
+  `34` in the ignored seeded SQLite database.
+- Reused Mattes's unchanged 1,280 × 960 photograph
+  [Doormats-textile.JPG](https://commons.wikimedia.org/wiki/File:Doormats-textile.JPG)
+  from Wikimedia Commons.
+- The photograph shows a colorful textile doormat in Thailand and was released
+  into the public domain by its copyright holder.
+- Saved the original file unchanged as `public/images/products/YS-7893.jpeg`.
+- Reused `Product::imageUrl()` and the `{rawurlencode(SKU)}.jpeg` convention
+  without adding a URL list, SKU conditional, model edit, seeder edit, database
+  change, or Blade edit.
+- Extended `ProductCardPhotoTest` to cover the live SKU alongside the existing
+  local SKU images and deterministic remote fallback.
+
+#### Verification
+
+- Source-image inspection — passed: the full textile mat and its colorful woven
+  pattern remain clear in the landscape composition.
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` — passed:
+  1 test, 39 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductCardPhotoTest.php` — passed.
+- `composer test` — passed: 21 tests passed, 1 skipped, and 133 assertions.
+- `npm run build` — could not run in this local environment because the optional
+  `@rolldown/binding-win32-x64-msvc` package is missing under Node `20.17.0`.
+- In-app browser inspection — confirmed the unique `YS-7893` card loads
+  `/images/products/YS-7893.jpeg`, renders the 1,280 × 960 source at 106 × 106,
+  and preserves alt text `Classic Floor Mat sample photo`.
+
 ### Replace the live Classic Airpot photo
 
 Status: implemented.

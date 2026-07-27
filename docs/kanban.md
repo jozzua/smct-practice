@@ -16,7 +16,7 @@ one line per task, newest at the top of each section.
 
 ## Doing
 
-- Replace the catalog photo for product SKU `QL-0101` with a reusable classic
+- Replace the catalog photo for product SKU `LI-8867` with a reusable classic
   flat-iron image. — Codex
 
 ## Done

@@ -5,8 +5,7 @@ one line per task, newest at the top of each section.
 
 ## Todo
 
-- Fix `DatabaseSeeder::seedOrders()` — it is called with 2 arguments but the signature
-  requires 3, so `php artisan migrate --seed` currently fails on a fresh database.
+- (nothing queued)
 
 ## Doing
 
@@ -14,6 +13,8 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- `DatabaseSeeder::seedOrders()` now receives its required stable customer argument,
+  so fresh database migration and seeding succeeds.
 - Native quantity dropdown replaced with an accessible storefront-styled preset
   picker that does not overlap the Add to cart button.
 - Orders-list N+1 regression test added with a constant query-count guard and rendered

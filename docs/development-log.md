@@ -23,13 +23,13 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 - Replaced the browser-native quantity `datalist` with an accessible storefront
   picker that expands in the card layout, preserves free numeric entry, and cannot
   cover the Add to cart button.
+- Fixed the planted `DatabaseSeeder::seedOrders()` argument mismatch and verified
+  fresh migration and seeding against an isolated SQLite database.
 - Added a rehearsal learning record with the baseline, educational changes,
   verification evidence, teaching points, and restore boundaries.
 
 ### Current follow-up work
 
-- Fix the intentionally planted `DatabaseSeeder::seedOrders()` argument mismatch so
-  a fresh `php artisan migrate --seed` succeeds.
 - The admin login feature remains planned but unimplemented; see the
   [admin login PRD](admin-login-prd.md).
 

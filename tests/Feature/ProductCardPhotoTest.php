@@ -37,6 +37,10 @@ class ProductCardPhotoTest extends TestCase
                 'sku' => 'LI-8867',
             ]),
             Product::factory()->create([
+                'name' => 'Premium Gas Stove',
+                'sku' => 'PP-1112',
+            ]),
+            Product::factory()->create([
                 'name' => 'Portable Electric Fan',
                 'sku' => 'EF 2002',
             ]),
@@ -45,12 +49,14 @@ class ProductCardPhotoTest extends TestCase
         $this->assertFileExists(public_path('images/products/XH-5832.jpeg'));
         $this->assertFileExists(public_path('images/products/XK-0093.jpeg'));
         $this->assertFileExists(public_path('images/products/LI-8867.jpeg'));
+        $this->assertFileExists(public_path('images/products/PP-1112.jpeg'));
         $this->assertSame('/images/products/XH-5832.jpeg', $products[0]->imageUrl());
         $this->assertSame('/images/products/XK-0093.jpeg', $products[1]->imageUrl());
         $this->assertSame('/images/products/LI-8867.jpeg', $products[2]->imageUrl());
+        $this->assertSame('/images/products/PP-1112.jpeg', $products[3]->imageUrl());
         $this->assertSame(
             'https://picsum.photos/seed/EF%202002/240',
-            $products[3]->imageUrl(),
+            $products[4]->imageUrl(),
         );
 
         $response = $this->get(route('products.index'));

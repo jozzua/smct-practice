@@ -313,6 +313,28 @@ test.
   loads `/images/products/XK-0093.jpeg` at 2,444 × 2,447 and remains legible within
   the circular product crop.
 
+#### Premium Gas Stove image
+
+Status: implemented locally for SKU `PP-1112`.
+
+- Used `$swap-product-card-photo` to keep the change on the SKU-based resolver path.
+- Generated a clean catalog product photo of a premium two-burner gas stove.
+- Saved the final JPEG at `public/images/products/PP-1112.jpeg`, so
+  `Product::imageUrl()` resolves the exact live SKU without model or view changes.
+- Extended `ProductCardPhotoTest` to assert the `PP-1112` asset exists and renders
+  through the catalog card alongside the previous local images and fallback SKU.
+
+#### Verification
+
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` with the project-local
+  PHP runtime after rebasing onto current `main` — passed: 1 test, 27 assertions.
+- `composer test` with the project-local PHP runtime — 20 passed, 1 skipped, and
+  1 errored on the existing `DatabaseSeeder::seedOrders()` argument mismatch;
+  119 assertions completed.
+- Repository investigation found no `storage/logs/laravel.log`, no repo-local
+  `dev/` directory, and no separate TODO notes; the Kanban board remains the
+  source of truth for follow-up work.
+
 ### Sale-pricing exercise
 
 - `php artisan test tests/Feature/BrandingTest.php tests/Feature/ProductPricingTest.php tests/Feature/CheckoutTest.php tests/Feature/ProductCardPhotoTest.php`

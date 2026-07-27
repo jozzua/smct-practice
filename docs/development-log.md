@@ -25,6 +25,8 @@ The [Kanban board](kanban.md) is the source of truth for active work.
   cover the Add to cart button.
 - Added a rehearsal learning record with the baseline, educational changes,
   verification evidence, teaching points, and restore boundaries.
+- Added a generated catalog photo for live SKU `PP-1112` through the SKU-based
+  product-photo resolver and extended focused coverage for the local asset.
 
 ### Current follow-up work
 

@@ -5,15 +5,20 @@ one line per task, newest at the top of each section.
 
 ## Todo
 
-- (nothing queued)
+- Catalog search by name or SKU — spec: [[catalog-search-prd]]
+- Honor the free-delivery-₱5,000+ promise at checkout — spec: [[free-shipping-prd]]
+- Product detail page at /products/{sku} — spec: [[product-detail-page-prd]]
+- Order status filter tabs on the Orders index — spec: [[order-status-filter-prd]]
 
 ## Doing
 
-- Replace the catalog photo for product SKU `QL-0101` with a reusable classic
-  flat-iron image. — Codex
+- (nothing in progress — add your name and the task when you pick something up)
 
 ## Done
 
+- Live catalog product photo shipped via `$swap-product-card-photo`, re-keyed in
+  review from the local-seed SKU to the live SKU `LI-8867` (PR #17) —
+  spec: [[live-photo-skill-prd]].
 - `DatabaseSeeder::seedOrders()` now receives its required stable customer argument,
   so fresh database migration and seeding succeeds.
 - Native quantity dropdown replaced with an accessible storefront-styled preset

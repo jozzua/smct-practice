@@ -415,6 +415,48 @@ Status: implemented and verified locally.
 - Repository investigation found no `dev/` directory or separate TODO notes; the
   Kanban board remains the source of truth for follow-up work.
 
+### Document the Kanban workflow and repo-scoped skills
+
+Status: implemented and verified locally.
+
+- Exercise intent: make the repository's work-tracking process and reusable local
+  skills discoverable from the primary agent instructions.
+- Updated `AGENTS.md` to identify `docs/kanban.md` as the source of truth and define
+  how tasks move through Todo, Doing, and Done.
+- Documented the existing `$swap-product-card-photo` and
+  `$apply-product-sale-pricing` skills with their exact `SKILL.md` paths and usage
+  triggers.
+- Affected files: `AGENTS.md` and `docs/rehearsal-learning-record.md`.
+- Verification: confirmed both documented skill files and the Kanban board exist,
+  reviewed the diff, and checked the working tree. No application tests or frontend
+  build were required because this change only updates Markdown documentation.
+- Restore boundary: these two documentation edits form one uncommitted rehearsal
+  change and can be restored independently of application code, subject to the
+  repository's approval requirement.
+
+### Fix the DatabaseSeeder argument mismatch
+
+Status: implemented and verified locally.
+
+- Exercise intent: repair the intentionally planted fresh-database seeding failure
+  without changing existing production data or using the seeder as a data migration.
+- Updated `DatabaseSeeder::run()` to pass the already-created, stable
+  `Dr. Arnulfo Reynolds` customer object as the required third argument to
+  `seedOrders()`.
+- Reused `DatabaseSeederTest`, which runs the complete seeder and verifies the
+  customer by stable email address and the expected paid-order relationship.
+- Affected files: `database/seeders/DatabaseSeeder.php`, `docs/kanban.md`,
+  `docs/development-log.md`, and `docs/rehearsal-learning-record.md`.
+- Verification:
+  `php artisan test tests/Feature/DatabaseSeederTest.php` passed with 1 test and
+  2 assertions; an isolated SQLite `php artisan migrate:fresh --seed --force`
+  completed successfully; Pint and `git diff --check` passed; `composer test`
+  passed with 21 tests, 113 assertions, and 1 skipped test.
+- Restore boundary: the one-line seeder call correction and these three
+  documentation updates form this uncommitted exercise. The pre-existing
+  `AGENTS.md` and Kanban-workflow learning-record edits remain a separate
+  uncommitted documentation exercise.
+
 ## Verification record
 
 ### Display-name exercise

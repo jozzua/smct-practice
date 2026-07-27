@@ -30,6 +30,8 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 - Replaced the browser-native quantity `datalist` with an accessible storefront
   picker that expands in the card layout, preserves free numeric entry, and cannot
   cover the Add to cart button.
+- Fixed the planted `DatabaseSeeder::seedOrders()` argument mismatch and verified
+  fresh migration and seeding against an isolated SQLite database.
 - Added a rehearsal learning record with the baseline, educational changes,
   verification evidence, teaching points, and restore boundaries.
 - Added a generated catalog photo for live SKU `PP-1112` through the SKU-based

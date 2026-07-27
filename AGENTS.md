@@ -39,6 +39,32 @@
 - Do not reset, revert, discard, or force-push rehearsal work without explicit user
   approval. Verify the exact restore target and preserve the learning record first.
 
+## Kanban board and work tracking
+
+- Treat `docs/kanban.md` as the source of truth for active repository work.
+- Before starting an implementation task, read the board and inspect the working
+  tree so existing work and unrelated rehearsal changes remain visible.
+- When picking up a Todo item, move it to Doing and add your name. Keep one task per
+  line and place the newest item at the top of its section.
+- When the task is complete and verified, move it to Done and remove your name.
+- Keep the board update in the same pull request or change set as the work it
+  describes. Do not mark a task Done when required verification is failing or was
+  not run.
+
+## Repository skills
+
+- Repo-scoped Codex skills live under `skills/`. Read the matching `SKILL.md`
+  completely before using a skill and follow its workflow and guardrails.
+- Use `$swap-product-card-photo`
+  (`skills/swap-product-card-photo/SKILL.md`) for catalog product-photo changes,
+  product-image merge conflicts, or regressions involving the shared product card.
+- Use `$apply-product-sale-pricing`
+  (`skills/apply-product-sale-pricing/SKILL.md`) for sale-price changes or pricing
+  inconsistencies across the catalog, checkout, VAT, shipping, and stored order
+  items.
+- When adding, renaming, or removing a repo-scoped skill, update this list and the
+  relevant learning record or development documentation in the same change.
+
 ## Standard local checks
 
 - Before committing PHP or backend changes, run `composer test` when practical.

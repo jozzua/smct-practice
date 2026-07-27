@@ -12,8 +12,7 @@ one line per task, newest at the top of each section.
 
 ## Doing
 
-- Replace the catalog photo for product SKU `LI-8867` with a reusable classic
-  flat-iron image. — Codex
+- (nothing in progress — add your name and the task when you pick something up)
 
 ## Done
 
@@ -21,11 +20,11 @@ one line per task, newest at the top of each section.
   photo through `$swap-product-card-photo`.
 - Real product photo added for live SKU `PP-1112` by invoking
   `$swap-product-card-photo`.
-- Live Classic Airpot SKU `CQ-8868` given a real vintage pump-pot photo through
-  `$swap-product-card-photo`.
-- `DatabaseSeeder::seedOrders()` call fixed so a fresh standard demo seed completes.
-- Live catalog SKU `NL-8805` given a real classic-gas-stove photo by invoking
-  `$swap-product-card-photo`.
+- Live catalog product photo shipped via `$swap-product-card-photo`, re-keyed in
+  review from the local-seed SKU to the live SKU `LI-8867` (PR #17) —
+  spec: [[live-photo-skill-prd]].
+- `DatabaseSeeder::seedOrders()` now receives its required stable customer argument,
+  so fresh database migration and seeding succeeds.
 - Native quantity dropdown replaced with an accessible storefront-styled preset
   picker that does not overlap the Add to cart button.
 - Orders-list N+1 regression test added with a constant query-count guard and rendered

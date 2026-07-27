@@ -5,8 +5,6 @@ one line per task, newest at the top of each section.
 
 ## Todo
 
-- Give a live catalog product a real photo by invoking `$swap-product-card-photo` —
-  spec: [[live-photo-skill-prd]]
 - Catalog search by name or SKU — spec: [[catalog-search-prd]]
 - Honor the free-delivery-₱5,000+ promise at checkout — spec: [[free-shipping-prd]]
 - Product detail page at /products/{sku} — spec: [[product-detail-page-prd]]
@@ -21,6 +19,8 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- Real product photo added for live SKU `PP-1112` by invoking
+  `$swap-product-card-photo`.
 - Native quantity dropdown replaced with an accessible storefront-styled preset
   picker that does not overlap the Add to cart button.
 - Orders-list N+1 regression test added with a constant query-count guard and rendered

@@ -16,7 +16,8 @@ one line per task, newest at the top of each section.
 
 ## Doing
 
-- (nothing in progress — add your name and the task when you pick something up)
+- Replace the catalog photo for product SKU `LI-8867` with a reusable classic
+  flat-iron image. — Codex
 
 ## Done
 

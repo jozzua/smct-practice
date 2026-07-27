@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $customers = Customer::factory()->count(599)->create()->push($drArnulfoReynolds);
 
-        $this->seedOrders($products, $customers);
+        $this->seedOrders($products, $customers, $drArnulfoReynolds);
         $this->seedPaidOrderForDrArnulfoReynolds($products);
     }
 

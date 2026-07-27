@@ -298,9 +298,44 @@ h1 {
 }
 
 .sku {
-    color: var(--color-muted);
-    font-size: 0.8rem;
+    align-items: center;
+    color: #365247;
+    display: inline-flex;
+    font-size: 0.72rem;
+    font-weight: 700;
+    gap: 0.45rem;
+    letter-spacing: 0.06em;
     margin: 0;
+    text-transform: uppercase;
+}
+
+.sku-label {
+    color: var(--color-muted);
+}
+
+.sku-barcode {
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #315f52 0 2px,
+            transparent 2px 3px,
+            #315f52 3px 4px,
+            transparent 4px 6px,
+            #315f52 6px 9px,
+            transparent 9px 10px,
+            #315f52 10px 11px,
+            transparent 11px 14px
+        );
+    border-inline: 1px solid #315f52;
+    display: inline-block;
+    height: 1rem;
+    opacity: 0.82;
+    width: 2.7rem;
+}
+
+.sku-code {
+    color: #315f52;
+    font-variant-numeric: tabular-nums;
 }
 
 .price {

@@ -14,7 +14,11 @@
                 >
 
                 <h2 class="card-title">{{ $product->name }}</h2>
-                <p class="sku">SKU {{ $product->sku }}</p>
+                <p class="sku" aria-label="SKU {{ $product->sku }}">
+                    <span class="sku-label">SKU</span>
+                    <span class="sku-barcode" aria-hidden="true"></span>
+                    <span class="sku-code">{{ $product->sku }}</span>
+                </p>
                 <p class="price">₱{{ number_format($product->price_cents / 100, 2) }}</p>
                 <p class="muted">{{ $product->description }}</p>
 

@@ -9,11 +9,12 @@ one line per task, newest at the top of each section.
 
 ## Doing
 
-- Replace the catalog photo for product SKU `QL-0101` with a reusable classic
-  flat-iron image. — Codex
+- (nothing in progress — add your name and the task when you pick something up)
 
 ## Done
 
+- Classic Flat Iron SKU `QL-0101` now uses a local CC0 product photo selected
+  through the SKU-based image resolver.
 - `DatabaseSeeder::seedOrders()` now receives its required stable customer argument,
   so fresh database migration and seeding succeeds.
 - Native quantity dropdown replaced with an accessible storefront-styled preset

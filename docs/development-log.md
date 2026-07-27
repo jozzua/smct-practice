@@ -5,6 +5,8 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 
 ## 2026-07-27
 
+- Replaced the catalog photo for Classic Flat Iron SKU `QL-0101` with a CC0
+  museum photo while preserving the shared SKU-based image resolver.
 - Restored the original customer-facing name, `Maligaya Trading Company`, through
   `APP_NAME` and `config('app.name')` while preserving the existing session, cache,
   and Redis identifiers.

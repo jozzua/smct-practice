@@ -148,6 +148,44 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 ## Current educational exercise
 
+### Replace the Classic Flat Iron image
+
+Status: implemented and verified locally.
+
+- Selected the product by exact SKU `QL-0101`, not by its display name or catalog
+  position.
+- Downloaded `Electric Iron, c. 1901 - Museum of Science and Industry (Chicago) -
+  DSC06464.JPG` by Daderot from Wikimedia Commons:
+  `https://commons.wikimedia.org/wiki/File:Electric_Iron,_c._1901_-_Museum_of_Science_and_Industry_(Chicago)_-_DSC06464.JPG`.
+- The source is dedicated to the public domain under CC0 1.0 and may be copied,
+  modified, distributed, and used commercially without permission.
+- Saved the 960 × 725 JPEG preview as
+  `public/images/products/QL-0101.jpeg`.
+- Reused `Product::imageUrl()` and the existing `<x-card>` image contract without
+  changing the product model, Blade view, or card component.
+- Extended `ProductCardPhotoTest` to protect the new local image while retaining
+  coverage for the other local SKU images and the encoded remote fallback.
+- Affected files: `public/images/products/QL-0101.jpeg`,
+  `tests/Feature/ProductCardPhotoTest.php`, `docs/kanban.md`,
+  `docs/development-log.md`, and `docs/rehearsal-learning-record.md`.
+- Commit boundary: the asset, focused test, and initial Doing-board entry are
+  committed in `9a23f41`; the completed board state and supporting development and
+  learning notes remain tracked working-tree changes.
+
+#### Verification
+
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` — passed:
+  1 test, 23 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductCardPhotoTest.php` — passed.
+- `composer test` — passed: 21 tests passed, 1 skipped, 117 assertions.
+- `npm run build` — passed; Vite emitted only the existing optional `fontaine`
+  optimization notice.
+- Asset inspection — confirmed a valid 960 × 725 baseline JPEG.
+- In-app browser inspection — confirmed SKU `QL-0101` renders
+  `/images/products/QL-0101.jpeg` with `Classic Flat Iron sample photo` alt text;
+  the image loads at its natural dimensions and displays in the intended 112 × 112
+  circular product-card crop.
+
 ### Simplify the Maligaya header logo
 
 Status: implemented and verified locally.

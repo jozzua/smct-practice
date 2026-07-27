@@ -9,8 +9,6 @@ one line per task, newest at the top of each section.
 - Honor the free-delivery-₱5,000+ promise at checkout — spec: [[free-shipping-prd]]
 - Product detail page at /products/{sku} — spec: [[product-detail-page-prd]]
 - Order status filter tabs on the Orders index — spec: [[order-status-filter-prd]]
-- Fix `DatabaseSeeder::seedOrders()` — it is called with 2 arguments but the signature
-  requires 3, so `php artisan migrate --seed` currently fails on a fresh database.
 
 ## Doing
 
@@ -20,6 +18,11 @@ one line per task, newest at the top of each section.
 ## Done
 
 - Real product photo added for live SKU `PP-1112` by invoking
+  `$swap-product-card-photo`.
+- Live Classic Airpot SKU `CQ-8868` given a real vintage pump-pot photo through
+  `$swap-product-card-photo`.
+- `DatabaseSeeder::seedOrders()` call fixed so a fresh standard demo seed completes.
+- Live catalog SKU `NL-8805` given a real classic-gas-stove photo by invoking
   `$swap-product-card-photo`.
 - Native quantity dropdown replaced with an accessible storefront-styled preset
   picker that does not overlap the Add to cart button.

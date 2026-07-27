@@ -29,6 +29,14 @@ class ProductCardPhotoTest extends TestCase
                 'sku' => 'MF-5120',
             ]),
             Product::factory()->create([
+                'name' => 'Classic Airpot',
+                'sku' => 'CQ-8868',
+            ]),
+            Product::factory()->create([
+                'name' => 'Classic Gas Stove',
+                'sku' => 'NL-8805',
+            ]),
+            Product::factory()->create([
                 'name' => 'Classic Desk Lamp',
                 'sku' => 'XK-0093',
             ]),
@@ -47,16 +55,20 @@ class ProductCardPhotoTest extends TestCase
         ];
 
         $this->assertFileExists(public_path('images/products/MF-5120.jpeg'));
+        $this->assertFileExists(public_path('images/products/CQ-8868.jpeg'));
+        $this->assertFileExists(public_path('images/products/NL-8805.jpeg'));
         $this->assertFileExists(public_path('images/products/XK-0093.jpeg'));
         $this->assertFileExists(public_path('images/products/LI-8867.jpeg'));
         $this->assertFileExists(public_path('images/products/PP-1112.jpeg'));
         $this->assertSame('/images/products/MF-5120.jpeg', $products[0]->imageUrl());
-        $this->assertSame('/images/products/XK-0093.jpeg', $products[1]->imageUrl());
-        $this->assertSame('/images/products/LI-8867.jpeg', $products[2]->imageUrl());
-        $this->assertSame('/images/products/PP-1112.jpeg', $products[3]->imageUrl());
+        $this->assertSame('/images/products/CQ-8868.jpeg', $products[1]->imageUrl());
+        $this->assertSame('/images/products/NL-8805.jpeg', $products[2]->imageUrl());
+        $this->assertSame('/images/products/XK-0093.jpeg', $products[3]->imageUrl());
+        $this->assertSame('/images/products/LI-8867.jpeg', $products[4]->imageUrl());
+        $this->assertSame('/images/products/PP-1112.jpeg', $products[5]->imageUrl());
         $this->assertSame(
             'https://picsum.photos/seed/EF%202002/240',
-            $products[4]->imageUrl(),
+            $products[6]->imageUrl(),
         );
 
         $response = $this->get(route('products.index'));

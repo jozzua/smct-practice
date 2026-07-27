@@ -148,6 +148,106 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 ## Current educational exercise
 
+### Replace the live Classic Airpot photo
+
+Status: implemented.
+
+- Selected the current local product by stable SKU `CQ-8868`; it is product ID `6`
+  in the ignored seeded SQLite database.
+- Reused Sarah Joy's unchanged 3,456 × 5,184 photograph
+  [Hot pot (6850557477).jpg](https://commons.wikimedia.org/wiki/File:Hot_pot_(6850557477).jpg)
+  from Wikimedia Commons.
+- The photograph shows a vintage Japanese Peacock pump pot and is licensed under
+  [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).
+- Saved the original file unchanged as `public/images/products/CQ-8868.jpeg`.
+- Reused `Product::imageUrl()` and the `{rawurlencode(SKU)}.jpeg` convention without
+  adding a URL list, SKU conditional, model edit, seeder edit, or Blade edit.
+- Extended `ProductCardPhotoTest` to cover the live SKU alongside the existing
+  local SKU images and deterministic remote fallback.
+
+#### Verification
+
+- Source-image inspection — passed: the pump lid, carrying handle, and floral
+  vintage body remain clear in the portrait composition.
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` — passed:
+  1 test, 27 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductCardPhotoTest.php` — passed.
+- `composer test` — passed: 21 tests passed, 1 skipped, and 121 assertions.
+- `npm run build` — could not run in this local environment because the optional
+  `@rolldown/binding-win32-x64-msvc` package is missing under Node `20.17.0`.
+- In-app browser inspection — confirmed the unique `CQ-8868` card loads
+  `/images/products/CQ-8868.jpeg`, renders the 3,456 × 5,184 source at 106 × 106,
+  and preserves alt text `Classic Airpot sample photo`.
+
+### Replace ad-hoc local products with the standard seeded dataset
+
+Status: implemented and verified locally.
+
+- The ignored local SQLite database started with 21 products, including the 20
+  ad-hoc mock products and the local-only `NL-8805` browser-verification record;
+  it had no customers, orders, or users.
+- Fixed the documented `DatabaseSeeder::seedOrders()` call-site mismatch by passing
+  the already-created Dr. Arnulfo Reynolds record as the required third argument.
+- The intended local reset is `php artisan migrate:fresh --seed`, which replaces all
+  local database contents and invalidates local sessions without touching production.
+- `php artisan migrate:fresh --seed --force` completed successfully and rebuilt the
+  local database with 40 products, 600 customers, 3,001 orders, 7,510 order items,
+  and one demo staff account.
+
+#### Verification
+
+- `php artisan test tests/Feature/DatabaseSeederTest.php` — passed:
+  1 test, 2 assertions.
+- `vendor/bin/pint --test database/seeders/DatabaseSeeder.php` — passed.
+- `composer test` — passed: 21 tests passed, 1 skipped, and 117 assertions.
+- Direct database counts confirmed the standard dataset and at least one paid order
+  for customer `arnulfo.reynolds@example.com`.
+- In-app browser inspection confirmed the Products page renders all 40 seeded
+  product cards.
+- Because `ProductFactory` generates random SKUs, this seed does not currently
+  contain `GV-9802`, `NL-8805`, `XH-5832`, or `XK-0093`. Their local image assets
+  remain in the working tree but are not selected by the current seeded records.
+
+### Replace the live Classic Gas Stove photo
+
+Status: implemented.
+
+- Selected the live product by stable SKU `NL-8805`, not by its display name,
+  database ID, or catalog position.
+- Downloaded Alf van Beem's 2,229 × 2,972 photograph
+  [Old gas stove Teknikens och Sjöfartens hus, Science and Maritime House.JPG](https://commons.wikimedia.org/wiki/File:Old_gas_stove_Teknikens_och_Sj%C3%B6fartens_hus,_Science_and_Maritime_House.JPG)
+  from Wikimedia Commons.
+- The photograph shows an old gas stove displayed at Malmö Museer's Science and
+  Maritime House and is dedicated to the public domain under
+  [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+- Saved the original file unchanged as `public/images/products/NL-8805.jpeg`.
+- Reused `Product::imageUrl()` and the `{rawurlencode(SKU)}.jpeg` convention without
+  adding a URL list, SKU conditional, model edit, or Blade edit.
+- Extended `ProductCardPhotoTest` to cover the new local image alongside the
+  existing local SKU images and deterministic remote fallback.
+- The ignored local SQLite database did not contain the requested SKU, so a
+  local-only `Classic Gas Stove` rehearsal record was created as product ID `21`
+  with SKU `NL-8805`; the local catalog count changed from `20` to `21`.
+- The later standard database reset removed that local-only record while preserving
+  the source-controlled photo integration work.
+
+#### Verification
+
+- Source-image inspection — passed: the complete vintage stove, three burners,
+  control knobs, and oven door are clear in the portrait composition.
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` — passed:
+  1 test, 23 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductCardPhotoTest.php` — passed.
+- `npm run build` — could not run in this local environment: Node `20.17.0` is
+  below Vite's required `20.19.0`, and the optional
+  `@rolldown/binding-win32-x64-msvc` package is missing.
+- `composer test` — 20 passed, 1 skipped, and 1 errored on the existing
+  `DatabaseSeeder::seedOrders()` argument mismatch; 115 assertions completed.
+- Local image response — confirmed `/images/products/NL-8805.jpeg` resolves as the
+  SKU-specific image.
+- In-app browser inspection — confirmed one `NL-8805` card renders the 2,229 ×
+  2,972 source at 106 × 106 with alt text `Classic Gas Stove sample photo`.
+
 ### Simplify the Maligaya header logo
 
 Status: implemented and verified locally.

@@ -9,7 +9,14 @@ The [Kanban board](kanban.md) is the source of truth for active work.
   `APP_NAME` and `config('app.name')` while preserving the existing session, cache,
   and Redis identifiers.
 - Established `Product::imageUrl()` as the single SKU-based product-photo resolver,
-  with local images for SKUs `XH-5832` and `XK-0093` and a deterministic fallback.
+  with local images for SKUs `XH-5832`, `CQ-8868`, `NL-8805`, and `XK-0093` and a
+  deterministic fallback.
+- Replaced the generated image for live Classic Airpot SKU `CQ-8868` with Sarah
+  Joy's CC BY-SA 2.0 photograph of a vintage Japanese Peacock pump pot.
+- Replaced the generated image for live catalog SKU `NL-8805` with Alf van Beem's
+  CC0 photograph of an old gas stove at Malmö's Science and Maritime House.
+- Fixed the `DatabaseSeeder::seedOrders()` call-site mismatch so the standard local
+  demo dataset can be rebuilt successfully.
 - Added consistent sale pricing across the catalog, checkout calculations, VAT,
   shipping thresholds, and stored order-item unit prices.
 - Added the repo-scoped `$swap-product-card-photo` and
@@ -30,8 +37,6 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 
 ### Current follow-up work
 
-- Fix the intentionally planted `DatabaseSeeder::seedOrders()` argument mismatch so
-  a fresh `php artisan migrate --seed` succeeds.
 - The admin login feature remains planned but unimplemented; see the
   [admin login PRD](admin-login-prd.md).
 

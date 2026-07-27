@@ -5,6 +5,8 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 
 ## 2026-07-27
 
+- Replaced the catalog photo for Classic Flat Iron SKU `QL-0101` with a CC0
+  museum photo while preserving the shared SKU-based image resolver.
 - Restored the original customer-facing name, `Maligaya Trading Company`, through
   `APP_NAME` and `config('app.name')` while preserving the existing session, cache,
   and Redis identifiers.
@@ -23,13 +25,13 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 - Replaced the browser-native quantity `datalist` with an accessible storefront
   picker that expands in the card layout, preserves free numeric entry, and cannot
   cover the Add to cart button.
+- Fixed the planted `DatabaseSeeder::seedOrders()` argument mismatch and verified
+  fresh migration and seeding against an isolated SQLite database.
 - Added a rehearsal learning record with the baseline, educational changes,
   verification evidence, teaching points, and restore boundaries.
 
 ### Current follow-up work
 
-- Fix the intentionally planted `DatabaseSeeder::seedOrders()` argument mismatch so
-  a fresh `php artisan migrate --seed` succeeds.
 - The admin login feature remains planned but unimplemented; see the
   [admin login PRD](admin-login-prd.md).
 

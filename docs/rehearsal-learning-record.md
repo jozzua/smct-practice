@@ -148,6 +148,44 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 ## Current educational exercise
 
+### Replace the Classic Flat Iron image
+
+Status: implemented and verified locally.
+
+- Selected the product by exact SKU `QL-0101`, not by its display name or catalog
+  position.
+- Downloaded `Electric Iron, c. 1901 - Museum of Science and Industry (Chicago) -
+  DSC06464.JPG` by Daderot from Wikimedia Commons:
+  `https://commons.wikimedia.org/wiki/File:Electric_Iron,_c._1901_-_Museum_of_Science_and_Industry_(Chicago)_-_DSC06464.JPG`.
+- The source is dedicated to the public domain under CC0 1.0 and may be copied,
+  modified, distributed, and used commercially without permission.
+- Saved the 960 × 725 JPEG preview as
+  `public/images/products/QL-0101.jpeg`.
+- Reused `Product::imageUrl()` and the existing `<x-card>` image contract without
+  changing the product model, Blade view, or card component.
+- Extended `ProductCardPhotoTest` to protect the new local image while retaining
+  coverage for the other local SKU images and the encoded remote fallback.
+- Affected files: `public/images/products/QL-0101.jpeg`,
+  `tests/Feature/ProductCardPhotoTest.php`, `docs/kanban.md`,
+  `docs/development-log.md`, and `docs/rehearsal-learning-record.md`.
+- Commit boundary: the asset, focused test, and initial Doing-board entry are
+  committed in `9a23f41`; the completed board state and supporting development and
+  learning notes remain tracked working-tree changes.
+
+#### Verification
+
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` — passed:
+  1 test, 23 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductCardPhotoTest.php` — passed.
+- `composer test` — passed: 21 tests passed, 1 skipped, 117 assertions.
+- `npm run build` — passed; Vite emitted only the existing optional `fontaine`
+  optimization notice.
+- Asset inspection — confirmed a valid 960 × 725 baseline JPEG.
+- In-app browser inspection — confirmed SKU `QL-0101` renders
+  `/images/products/QL-0101.jpeg` with `Classic Flat Iron sample photo` alt text;
+  the image loads at its natural dimensions and displays in the intended 112 × 112
+  circular product-card crop.
+
 ### Simplify the Maligaya header logo
 
 Status: implemented and verified locally.
@@ -282,6 +320,48 @@ Status: implemented and verified locally.
   number input, and the menu closes with the selected option marked.
 - Repository investigation found no `dev/` directory or separate TODO notes; the
   Kanban board remains the source of truth for follow-up work.
+
+### Document the Kanban workflow and repo-scoped skills
+
+Status: implemented and verified locally.
+
+- Exercise intent: make the repository's work-tracking process and reusable local
+  skills discoverable from the primary agent instructions.
+- Updated `AGENTS.md` to identify `docs/kanban.md` as the source of truth and define
+  how tasks move through Todo, Doing, and Done.
+- Documented the existing `$swap-product-card-photo` and
+  `$apply-product-sale-pricing` skills with their exact `SKILL.md` paths and usage
+  triggers.
+- Affected files: `AGENTS.md` and `docs/rehearsal-learning-record.md`.
+- Verification: confirmed both documented skill files and the Kanban board exist,
+  reviewed the diff, and checked the working tree. No application tests or frontend
+  build were required because this change only updates Markdown documentation.
+- Restore boundary: these two documentation edits form one uncommitted rehearsal
+  change and can be restored independently of application code, subject to the
+  repository's approval requirement.
+
+### Fix the DatabaseSeeder argument mismatch
+
+Status: implemented and verified locally.
+
+- Exercise intent: repair the intentionally planted fresh-database seeding failure
+  without changing existing production data or using the seeder as a data migration.
+- Updated `DatabaseSeeder::run()` to pass the already-created, stable
+  `Dr. Arnulfo Reynolds` customer object as the required third argument to
+  `seedOrders()`.
+- Reused `DatabaseSeederTest`, which runs the complete seeder and verifies the
+  customer by stable email address and the expected paid-order relationship.
+- Affected files: `database/seeders/DatabaseSeeder.php`, `docs/kanban.md`,
+  `docs/development-log.md`, and `docs/rehearsal-learning-record.md`.
+- Verification:
+  `php artisan test tests/Feature/DatabaseSeederTest.php` passed with 1 test and
+  2 assertions; an isolated SQLite `php artisan migrate:fresh --seed --force`
+  completed successfully; Pint and `git diff --check` passed; `composer test`
+  passed with 21 tests, 113 assertions, and 1 skipped test.
+- Restore boundary: the one-line seeder call correction and these three
+  documentation updates form this uncommitted exercise. The pre-existing
+  `AGENTS.md` and Kanban-workflow learning-record edits remain a separate
+  uncommitted documentation exercise.
 
 ## Verification record
 

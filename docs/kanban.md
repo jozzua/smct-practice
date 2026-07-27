@@ -5,21 +5,21 @@ one line per task, newest at the top of each section.
 
 ## Todo
 
-- Give a live catalog product a real photo by invoking `$swap-product-card-photo` —
-  spec: [[live-photo-skill-prd]]
 - Catalog search by name or SKU — spec: [[catalog-search-prd]]
 - Honor the free-delivery-₱5,000+ promise at checkout — spec: [[free-shipping-prd]]
 - Product detail page at /products/{sku} — spec: [[product-detail-page-prd]]
 - Order status filter tabs on the Orders index — spec: [[order-status-filter-prd]]
-- Fix `DatabaseSeeder::seedOrders()` — it is called with 2 arguments but the signature
-  requires 3, so `php artisan migrate --seed` currently fails on a fresh database.
 
 ## Doing
 
-- (nothing in progress — add your name and the task when you pick something up)
+- Give live catalog product SKU `QL-0101` a real photo through
+  `$swap-product-card-photo`; implementation is merged locally and awaits
+  deployment and live-page verification. — Codex — spec: [[live-photo-skill-prd]]
 
 ## Done
 
+- `DatabaseSeeder::seedOrders()` now receives its required stable customer argument,
+  so fresh database migration and seeding succeeds.
 - Native quantity dropdown replaced with an accessible storefront-styled preset
   picker that does not overlap the Add to cart button.
 - Orders-list N+1 regression test added with a constant query-count guard and rendered

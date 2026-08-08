@@ -116,9 +116,11 @@ add(
     : '`docs/kanban.md` was **not** touched. AGENTS.md requires the board update to ship with the work it describes.',
 );
 
-// 3. Focused test exists.
+// 3. Focused test exists. Only a warning when source changed WITHOUT a test —
+//    a docs- or config-only PR legitimately needs no test, and warning about
+//    it would train people to ignore the row.
 add(
-  testFiles.length > 0 ? PASS : WARN,
+  testFiles.length > 0 || sourceFiles.length === 0 ? PASS : WARN,
   'Focused test present',
   testFiles.length > 0
     ? `${testFiles.length} test file(s) changed${newTestFiles.length ? `, ${newTestFiles.length} newly added` : ''}: ${testFiles.map((f) => `\`${f.path}\``).join(', ')}`

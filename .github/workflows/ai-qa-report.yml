@@ -1,0 +1,52 @@
+name: AI QA Report
+
+# Advisory only. This never blocks a merge — qa.yml decides mergeability.
+# This job posts one PR comment mapped onto the six-item reviewer checklist in
+# docs/qa-checklist.md, so the automation reinforces the review habit the team
+# already practises instead of inventing a second, competing rubric.
+#
+# Trigger is `pull_request`, deliberately NOT `pull_request_target`:
+#   - same-repo branches  -> secrets available, full report incl. AI narrative
+#   - fork pull requests  -> no secrets, job is skipped entirely
+# That mirrors the house rule in docs/qa-checklist.md ("work arrived on a branch
+# of this repo, not a fork") rather than working around it.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ai-qa-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  report:
+    name: ai-qa-report
+    # Skip fork PRs: they legitimately have no access to secrets.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history so we can diff against the merge base.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build and post the QA report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Optional. Absent -> the report still posts, with the mechanical
+          # checks only and a note explaining what is missing.
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          REPO: ${{ github.repository }}
+        run: node .github/scripts/qa-report.mjs

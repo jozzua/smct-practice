@@ -20,6 +20,8 @@ and product is generated.
 - [Rehearsal learning record](docs/rehearsal-learning-record.md) — educational
   experiments, verification results, and restore points.
 - [Kanban board](docs/kanban.md) — shared Todo, Doing, and Done items.
+- [QA checklist](docs/qa-checklist.md) — the three QA altitudes, test-first
+  workflow, and the reviewer checklist for every PR.
 - [Admin login PRD](docs/admin-login-prd.md) — requirements for the planned admin
   access-control foundation.
 

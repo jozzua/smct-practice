@@ -1,0 +1,116 @@
+name: QA
+
+# Deterministic checks. These are the gates that decide whether a change is
+# mergeable. They run with no AI involvement and no secrets, so they work
+# identically on fork pull requests.
+#
+# Job names are stable on purpose: GitHub branch rules reference them by name.
+# Renaming a job silently disables the rule that required it.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+env:
+  PHP_VERSION: '8.3'
+  NODE_VERSION: '22'
+
+jobs:
+  php-style:
+    name: php-style
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Check formatting (Pint)
+        run: vendor/bin/pint --test
+
+  php-tests:
+    name: php-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      # phpunit.xml already pins DB_CONNECTION=sqlite / DB_DATABASE=:memory:,
+      # so the suite never touches a real database file.
+      - name: Run the test suite
+        run: php artisan test
+
+  frontend-build:
+    name: frontend-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      # npm ci requires package-lock.json to exist and match package.json.
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build assets
+        run: npm run build
+
+  database-smoke:
+    name: database-smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v3
+
+      # A throwaway SQLite file inside the runner. This proves a fresh
+      # migrate + full seed succeeds — the failure mode a :memory: test suite
+      # hides, because the suite never runs the real seeders end to end.
+      - name: Migrate and seed an isolated database
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ${{ github.workspace }}/database/ci-smoke.sqlite
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          touch "$DB_DATABASE"
+          php artisan migrate --force
+          php artisan db:seed --force

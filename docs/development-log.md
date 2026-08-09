@@ -11,7 +11,14 @@ The [Kanban board](kanban.md) is the source of truth for active work.
   `APP_NAME` and `config('app.name')` while preserving the existing session, cache,
   and Redis identifiers.
 - Established `Product::imageUrl()` as the single SKU-based product-photo resolver,
-  with local images for SKUs `MF-5120` and `XK-0093` and a deterministic fallback.
+  with local images for SKUs `MF-5120`, `CQ-8868`, `NL-8805`, `XK-0093`,
+  `LI-8867`, `PP-1112`, and `YS-7893` and a deterministic fallback.
+- Replaced the generated image for live Classic Airpot SKU `CQ-8868` with Sarah
+  Joy's CC BY-SA 2.0 photograph of a vintage Japanese Peacock pump pot.
+- Replaced the generated image for live catalog SKU `NL-8805` with Alf van Beem's
+  CC0 photograph of an old gas stove at Malmö's Science and Maritime House.
+- Fixed the `DatabaseSeeder::seedOrders()` call-site mismatch so the standard local
+  demo dataset can be rebuilt successfully.
 - Added consistent sale pricing across the catalog, checkout calculations, VAT,
   shipping thresholds, and stored order-item unit prices.
 - Added the repo-scoped `$swap-product-card-photo` and
@@ -31,6 +38,8 @@ The [Kanban board](kanban.md) is the source of truth for active work.
   verification evidence, teaching points, and restore boundaries.
 - Added a generated catalog photo for live SKU `PP-1112` through the SKU-based
   product-photo resolver and extended focused coverage for the local asset.
+- Replaced the generated image for live Classic Floor Mat SKU `YS-7893` with
+  Mattes's public-domain photograph of a colorful textile doormat in Thailand.
 
 ### Current follow-up work
 

@@ -16,8 +16,14 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- Barcode-style SKU markup added to product cards with accessible text and focused
+  rendering coverage.
 - Live Classic Floor Mat SKU `YS-7893` given a real public-domain textile-mat
   photo through `$swap-product-card-photo`.
+- `$build-laravel-qa-pipeline` added to standardize deterministic CI, PR gates,
+  browser and staging checks, dependency security, and policy-gated AI review.
+- Generated gas-stove catalog photo added for SKU `SV-4340` through
+  `$swap-product-card-photo`, with focused resolver coverage.
 - Real product photo added for live SKU `PP-1112` by invoking
   `$swap-product-card-photo`.
 - Live catalog product photo shipped via `$swap-product-card-photo`, re-keyed in

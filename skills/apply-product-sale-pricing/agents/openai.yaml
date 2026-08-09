@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apply Product Sale Pricing"
+  short_description: "Keep catalog and checkout sale prices consistent"
+  default_prompt: "Use $apply-product-sale-pricing to add a product sale with struck-through list pricing and consistent checkout totals."

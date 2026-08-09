@@ -3,8 +3,18 @@
 This log records meaningful repository changes and the current development state.
 The [Kanban board](kanban.md) is the source of truth for active work.
 
+## 2026-08-10
+
+- Completed the merged barcode-style SKU presentation by adding its accessible
+  Blade markup to every product card, with focused rendering coverage.
+
 ## 2026-07-27
 
+- Added the repo-scoped `$build-laravel-qa-pipeline` skill for deterministic local
+  and CI checks, GitHub review gates, staging verification, dependency security,
+  and explicitly policy-gated AI review.
+- Added a generated two-burner gas-stove catalog photo for SKU `SV-4340` through
+  the shared SKU-based image resolver, with focused regression coverage.
 - Replaced the catalog photo for Classic Flat Iron SKU `LI-8867` with a CC0
   museum photo while preserving the shared SKU-based image resolver.
 - Restored the original customer-facing name, `Maligaya Trading Company`, through

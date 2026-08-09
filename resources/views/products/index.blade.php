@@ -12,7 +12,11 @@
                 :image="$product->imageUrl()"
                 :image-alt="$product->name . ' sample photo'"
             >
-                <p class="sku">SKU {{ $product->sku }}</p>
+                <p class="sku" aria-label="SKU {{ $product->sku }}">
+                    <span class="sku-label">SKU</span>
+                    <span class="sku-barcode" aria-hidden="true"></span>
+                    <span class="sku-code">{{ $product->sku }}</span>
+                </p>
                 <p class="price">
                     <del class="price-original">₱{{ number_format($product->price_cents / 100, 2) }}</del>
                     <span class="price-sale">₱{{ number_format($product->salePriceCents() / 100, 2) }}</span>

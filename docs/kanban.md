@@ -16,6 +16,11 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- Staged pull-request QA pipeline added with deterministic PHP style, backend test,
+  frontend build, and fresh-database smoke gates plus a non-blocking advisory report
+  (PR #23) — guide: [[qa-pipeline]].
+- Three-altitude QA checklist and standing reviewer workflow documented for focused,
+  full-suite, and live verification — guide: [[qa-checklist]].
 - Live Classic Floor Mat SKU `YS-7893` given a real public-domain textile-mat
   photo through `$swap-product-card-photo`.
 - Real product photo added for live SKU `PP-1112` by invoking

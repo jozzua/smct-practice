@@ -3,6 +3,29 @@
 This log records meaningful repository changes and the current development state.
 The [Kanban board](kanban.md) is the source of truth for active work.
 
+## 2026-08-10
+
+- Merged a staged pull-request QA pipeline with four deterministic gates:
+  `php-style`, `php-tests`, `frontend-build`, and `database-smoke`.
+- Added a separate advisory QA report that computes review signals from the diff,
+  optionally adds an AI narrative, and cannot block a merge when secrets or the AI
+  provider are unavailable.
+- Added `composer qa` as the local entry point for the deterministic style, test,
+  and frontend-build checks.
+- Pinned Composer dependency resolution to the production PHP 8.3.6 runtime and
+  refreshed the lockfile so production installs remain reproducible.
+- Removed the unused database-configuration import exposed by the new Pint gate and
+  corrected the advisory report so documentation-only changes do not receive a
+  contradictory missing-test warning.
+
+## 2026-07-28
+
+- Added the three-altitude QA checklist: focused tests, the complete suite, and live
+  post-deployment verification.
+- Documented the standing pull-request review rules, including PRD-based tests,
+  Kanban movement, exact live identifiers, unchanged test intent, and honest
+  reporting of unrelated failures.
+
 ## 2026-07-27
 
 - Replaced the catalog photo for Classic Flat Iron SKU `LI-8867` with a CC0

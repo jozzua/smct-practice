@@ -3,21 +3,59 @@
 This log records meaningful repository changes and the current development state.
 The [Kanban board](kanban.md) is the source of truth for active work.
 
-## 2026-08-10
+Last updated: 2026-08-10 09:40 (Asia/Tokyo)
+
+History headings use the local time of the latest relevant recorded change.
+
+## 2026-08-10 09:40 (Asia/Tokyo)
+
+- Added the repo-scoped `$get-smct-context` skill so a new agent can build a
+  verified, SMCT-only briefing from current Git state, the Kanban board, the
+  development log, the rehearsal record, relevant PRDs, and sanitized local logs.
+- Defined separate read-only briefing and explicitly authorized documentation-refresh
+  modes, including rules for detecting stale handoff notes and distinguishing
+  committed, merged, branch-only, and uncommitted work.
+- Registered the skill in `AGENTS.md` and validated its structure with the official
+  skill validator.
+
+## 2026-08-10 08:55 (Asia/Tokyo)
 
 - Added the repo-scoped `$repo-sync-checker` skill and linked documentation for
   safe git synchronization, merge-conflict review, rehearsal-change protection,
   approval boundaries, and post-merge verification.
 - Completed the merged barcode-style SKU presentation by adding its accessible
   Blade markup to every product card, with focused rendering coverage.
-
-## 2026-07-27
-
 - Added the repo-scoped `$build-laravel-qa-pipeline` skill for deterministic local
   and CI checks, GitHub review gates, staging verification, dependency security,
   and explicitly policy-gated AI review.
 - Added a generated two-burner gas-stove catalog photo for SKU `SV-4340` through
   the shared SKU-based image resolver, with focused regression coverage.
+
+## 2026-08-10 08:14 (Asia/Tokyo)
+
+- Merged a staged pull-request QA pipeline with four deterministic gates:
+  `php-style`, `php-tests`, `frontend-build`, and `database-smoke`.
+- Added a separate advisory QA report that computes review signals from the diff,
+  optionally adds an AI narrative, and cannot block a merge when secrets or the AI
+  provider are unavailable.
+- Added `composer qa` as the local entry point for the deterministic style, test,
+  and frontend-build checks.
+- Pinned Composer dependency resolution to the production PHP 8.3.6 runtime and
+  refreshed the lockfile so production installs remain reproducible.
+- Removed the unused database-configuration import exposed by the new Pint gate and
+  corrected the advisory report so documentation-only changes do not receive a
+  contradictory missing-test warning.
+
+## 2026-07-28 06:34 (Asia/Tokyo)
+
+- Added the three-altitude QA checklist: focused tests, the complete suite, and live
+  post-deployment verification.
+- Documented the standing pull-request review rules, including PRD-based tests,
+  Kanban movement, exact live identifiers, unchanged test intent, and honest
+  reporting of unrelated failures.
+
+## 2026-07-27 11:45 (Asia/Tokyo)
+
 - Replaced the catalog photo for Classic Flat Iron SKU `LI-8867` with a CC0
   museum photo while preserving the shared SKU-based image resolver.
 - Restored the original customer-facing name, `Maligaya Trading Company`, through
@@ -59,7 +97,7 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 - The admin login feature remains planned but unimplemented; see the
   [admin login PRD](admin-login-prd.md).
 
-## 2026-07-24
+## 2026-07-24 08:47 (Asia/Tokyo)
 
 - `main` is synchronized with `origin/main`.
 - Added a shared Markdown Kanban board for work that needs to remain visible between
@@ -84,7 +122,7 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 - The admin login feature remains planned but unimplemented; see the
   [admin login PRD](admin-login-prd.md).
 
-## 2026-07-20
+## 2026-07-20 11:34 (Asia/Tokyo)
 
 - Added the admin login product requirements specification.
 - Merged the backend planning work into `main`.

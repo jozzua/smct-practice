@@ -18,14 +18,23 @@ one line per task, newest at the top of each section.
 
 - `$repo-sync-checker` added for safe git synchronization, merge-conflict review,
   rehearsal-change protection, approval boundaries, and post-merge verification.
+- Repo-scoped `$get-smct-context` skill added for verified SMCT-only briefings,
+  recent-change summaries, handoffs, and explicit context-documentation refreshes.
+- Development-log history standardized with Asia/Tokyo date-and-time headings, a
+  timestamped update marker, and a repository rule for future entries.
 - Barcode-style SKU markup added to product cards with accessible text and focused
   rendering coverage.
-- Live Classic Floor Mat SKU `YS-7893` given a real public-domain textile-mat
-  photo through `$swap-product-card-photo`.
 - `$build-laravel-qa-pipeline` added to standardize deterministic CI, PR gates,
   browser and staging checks, dependency security, and policy-gated AI review.
 - Generated gas-stove catalog photo added for SKU `SV-4340` through
   `$swap-product-card-photo`, with focused resolver coverage.
+- Staged pull-request QA pipeline added with deterministic PHP style, backend test,
+  frontend build, and fresh-database smoke gates plus a non-blocking advisory report
+  (PR #23) — guide: [[qa-pipeline]].
+- Three-altitude QA checklist and standing reviewer workflow documented for focused,
+  full-suite, and live verification — guide: [[qa-checklist]].
+- Live Classic Floor Mat SKU `YS-7893` given a real public-domain textile-mat
+  photo through `$swap-product-card-photo`.
 - Real product photo added for live SKU `PP-1112` by invoking
   `$swap-product-card-photo`.
 - Live catalog product photo shipped via `$swap-product-card-photo`, re-keyed in

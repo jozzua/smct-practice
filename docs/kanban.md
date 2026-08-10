@@ -16,6 +16,8 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- `$operate-laravel-releases` added as an approval-gated DevOps runbook with
+  operator documentation, release verification, evidence, and rollback guidance.
 - Live Classic Floor Mat SKU `YS-7893` given a real public-domain textile-mat
   photo through `$swap-product-card-photo`.
 - Real product photo added for live SKU `PP-1112` by invoking

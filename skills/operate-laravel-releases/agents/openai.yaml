@@ -1,0 +1,4 @@
+interface:
+  display_name: "Operate Laravel Releases"
+  short_description: "Run safe, auditable Laravel releases"
+  default_prompt: "Use $operate-laravel-releases to prepare a safe Laravel release plan with verification and rollback evidence."

@@ -73,6 +73,10 @@
   (`skills/build-laravel-qa-pipeline/SKILL.md`) to design, implement, or audit local
   QA commands, GitHub Actions, pull-request gates, browser smoke tests, staging
   verification, dependency security, and policy-gated AI review.
+- Use `$operate-laravel-releases`
+  (`skills/operate-laravel-releases/SKILL.md`) when preparing, executing, auditing,
+  or documenting a release, including preflight, production approval, migrations,
+  runtime reloads, health and smoke checks, evidence, and rollback planning.
 - When adding, renaming, or removing a repo-scoped skill, update this list and the
   relevant learning record or development documentation in the same change.
 

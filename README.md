@@ -24,6 +24,8 @@ and product is generated.
   workflow, and the reviewer checklist for every PR.
 - [Admin login PRD](docs/admin-login-prd.md) — requirements for the planned admin
   access-control foundation.
+- [Laravel release operations](docs/operate-laravel-releases.md) — approval-gated
+  deployment, verification, evidence, and rollback guidance for DevOps work.
 
 ## Setup (about 5 minutes)
 

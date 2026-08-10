@@ -16,6 +16,8 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- `$operate-laravel-releases` added as an approval-gated DevOps runbook with
+  operator documentation, release verification, evidence, and rollback guidance.
 - Repo-scoped `$get-smct-context` skill added for verified SMCT-only briefings,
   recent-change summaries, handoffs, and explicit context-documentation refreshes.
 - Development-log history standardized with Asia/Tokyo date-and-time headings, a

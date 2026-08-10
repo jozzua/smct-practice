@@ -1,0 +1,4 @@
+interface:
+  display_name: "Assess SMCT Solution Impact"
+  short_description: "Trace requirements and assess architecture impact"
+  default_prompt: "Use $assess-smct-solution-impact to assess this SMCT change and recommend a safe, verifiable design."

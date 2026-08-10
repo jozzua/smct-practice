@@ -3,9 +3,23 @@
 This log records meaningful repository changes and the current development state.
 The [Kanban board](kanban.md) is the source of truth for active work.
 
-Last updated: 2026-08-10 09:40 (Asia/Tokyo)
+Last updated: 2026-08-10 10:39 (Asia/Tokyo)
 
 History headings use the local time of the latest relevant recorded change.
+
+## 2026-08-10 10:39 (Asia/Tokyo)
+
+- Added and documented the repo-scoped `$assess-smct-solution-impact`
+  architecture-review skill, including its triggers, non-triggers, evidence-first
+  workflow, output contract, guardrails, and relationship to the existing
+  repository skills.
+- Registered the skill in `AGENTS.md`, linked its guide from the README, and tracked
+  the completed skill creation and documentation work on the Kanban board.
+- Kept the assessment workflow read-only by default and centered it on atomic
+  requirement traceability, reversible decisions, and explicit verification,
+  rollout, rollback, and observability planning.
+- Validated the skill structure with the official validator and forward-tested it
+  against the free-shipping PRD with a fresh read-only agent.
 
 ## 2026-08-10 09:40 (Asia/Tokyo)
 

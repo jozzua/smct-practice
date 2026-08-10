@@ -148,6 +148,39 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 ## Current educational exercise
 
+### Add a solution-impact architecture skill
+
+Status: implemented and verified locally.
+
+- Exercise intent: give a solutions architect a repeatable, evidence-first way to
+  reconcile requirements with current code, expose cross-cutting impacts, compare
+  alternatives, and plan reversible delivery before implementation.
+- Baseline commit: `651d813` on branch `solutions-architect-changes`.
+- The skill is read-only by default and separates observed facts, assumptions, and
+  recommendations while classifying atomic requirements as implemented, partial,
+  missing, conflicting, stale, or unknown.
+- Added a user-facing guide, README link, repository registration, development-log
+  entry, and Kanban tracking with the skill implementation.
+- Affected files: `skills/assess-smct-solution-impact/SKILL.md`,
+  `skills/assess-smct-solution-impact/agents/openai.yaml`, `README.md`, `AGENTS.md`,
+  `docs/solution-impact-skill.md`, `docs/development-log.md`, `docs/kanban.md`, and
+  `docs/rehearsal-learning-record.md`.
+
+#### Verification and restore boundary
+
+- Official `quick_validate.py skills/assess-smct-solution-impact` — passed with
+  `Skill is valid!` using a temporary dependency cache outside the repository.
+- Independent read-only forward test against `docs/free-shipping-prd.md` — passed:
+  the skill produced atomic requirement traceability, detected partial behavior and
+  stale planning evidence, assessed cross-cutting impacts, compared alternatives,
+  and supplied rollout, rollback, and verification guidance without changing files.
+- `git diff --check` — passed after the combined skill and documentation review.
+- Application tests and the frontend build were not required because this change
+  adds Markdown documentation and agent guidance only.
+- Preserve the skill directory, its registration, its user-facing guide, and the
+  associated project records as one restore unit. Do not discard or restore any
+  part without explicit approval.
+
 ### Add a repository-only SMCT context skill
 
 Status: implemented and verified locally.

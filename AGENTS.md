@@ -69,6 +69,12 @@
   (`skills/apply-product-sale-pricing/SKILL.md`) for sale-price changes or pricing
   inconsistencies across the catalog, checkout, VAT, shipping, and stored order
   items.
+- Use `$assess-smct-solution-impact`
+  (`skills/assess-smct-solution-impact/SKILL.md`) before implementing a substantial
+  or cross-cutting change, when reconciling a PRD with current code, or when an
+  architecture decision needs options, risks, rollout, rollback, and verification.
+  Keep assessments evidence-first and read-only unless the user separately asks for
+  implementation or documentation changes.
 - When adding, renaming, or removing a repo-scoped skill, update this list and the
   relevant learning record or development documentation in the same change.
 

@@ -16,6 +16,9 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- Repo-scoped `$assess-smct-solution-impact` skill added and documented for
+  evidence-first architecture reviews, requirement traceability, reversible design,
+  rollout, rollback, and verification planning — guide: [[solution-impact-skill]].
 - Repo-scoped `$get-smct-context` skill added for verified SMCT-only briefings,
   recent-change summaries, handoffs, and explicit context-documentation refreshes.
 - Development-log history standardized with Asia/Tokyo date-and-time headings, a

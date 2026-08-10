@@ -24,6 +24,9 @@ and product is generated.
   workflow, and the reviewer checklist for every PR.
 - [Admin login PRD](docs/admin-login-prd.md) — requirements for the planned admin
   access-control foundation.
+- [Solution-impact skill](docs/solution-impact-skill.md) — architecture-review
+  workflow, evidence contract, guardrails, and examples for
+  `$assess-smct-solution-impact`.
 
 ## Setup (about 5 minutes)
 

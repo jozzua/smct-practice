@@ -5,6 +5,9 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 
 ## 2026-08-10
 
+- Added the repo-scoped `$repo-sync-checker` skill and linked documentation for
+  safe git synchronization, merge-conflict review, rehearsal-change protection,
+  approval boundaries, and post-merge verification.
 - Completed the merged barcode-style SKU presentation by adding its accessible
   Blade markup to every product card, with focused rendering coverage.
 

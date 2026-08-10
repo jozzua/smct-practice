@@ -148,6 +148,35 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 ## Current educational exercise
 
+### Create the repo sync checker skill
+
+Status: implemented and structurally verified.
+
+- Exercise intent: capture the safe repository synchronization workflow as a
+  reusable repo-scoped Codex skill for system-checker pull, merge, conflict-review,
+  and post-integration verification work.
+- Added `$repo-sync-checker` with guidance to inspect `AGENTS.md`, the Kanban
+  board, development log, rehearsal learning record, local logs, and git status
+  before changing repository state.
+- Documented guardrails for detached or dirty worktrees, local rehearsal-change
+  protection, fetch-before-integrate review, deliberate conflict resolution,
+  generated-file avoidance, dependency/security checks, and explicit approval
+  boundaries for destructive or production-impacting actions.
+- Added user-facing documentation and linked it from the README and repository
+  skill list in `AGENTS.md`.
+- Affected files: `skills/repo-sync-checker/SKILL.md`,
+  `docs/repo-sync-checker.md`, `README.md`, `AGENTS.md`, `docs/kanban.md`,
+  `docs/development-log.md`, and `docs/rehearsal-learning-record.md`.
+
+#### Verification and restore boundary
+
+- Markdown/frontmatter inspection passed.
+- `git diff --check` passed for the skill and documentation changes.
+- No Laravel tests or frontend build were required because this exercise only adds
+  Markdown skill and documentation files.
+- Treat the skill folder, linked documentation, and these project-record updates as
+  one restore unit. Obtain explicit approval before removing or restoring it.
+
 ### Replace the Classic Flat Iron image
 
 Status: implemented and verified locally.

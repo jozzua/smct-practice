@@ -66,6 +66,11 @@
   (`skills/build-laravel-qa-pipeline/SKILL.md`) to design, implement, or audit local
   QA commands, GitHub Actions, pull-request gates, browser smoke tests, staging
   verification, dependency security, and policy-gated AI review.
+- Use `$repo-sync-checker` (`skills/repo-sync-checker/SKILL.md`) for safe git
+  synchronization, pull/merge preparation, merge-conflict review, local rehearsal
+  change protection, and post-merge verification. See
+  `docs/repo-sync-checker.md` for the user-facing workflow and approval
+  boundaries.
 - When adding, renaming, or removing a repo-scoped skill, update this list and the
   relevant learning record or development documentation in the same change.
 

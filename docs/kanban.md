@@ -16,6 +16,8 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- `$repo-sync-checker` added for safe git synchronization, merge-conflict review,
+  rehearsal-change protection, approval boundaries, and post-merge verification.
 - Barcode-style SKU markup added to product cards with accessible text and focused
   rendering coverage.
 - Live Classic Floor Mat SKU `YS-7893` given a real public-domain textile-mat

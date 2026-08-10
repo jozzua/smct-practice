@@ -22,6 +22,9 @@ and product is generated.
 - [Kanban board](docs/kanban.md) — shared Todo, Doing, and Done items.
 - [QA checklist](docs/qa-checklist.md) — the three QA altitudes, test-first
   workflow, and the reviewer checklist for every PR.
+- [Repo sync checker skill](docs/repo-sync-checker.md) — when to invoke
+  `$repo-sync-checker` for safe pull, merge, conflict-review, and verification
+  work.
 - [Admin login PRD](docs/admin-login-prd.md) — requirements for the planned admin
   access-control foundation.
 

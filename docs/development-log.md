@@ -18,6 +18,16 @@ History headings use the local time of the latest relevant recorded change.
 - Registered the skill in `AGENTS.md` and validated its structure with the official
   skill validator.
 
+## 2026-08-10 08:55 (Asia/Tokyo)
+
+- Completed the merged barcode-style SKU presentation by adding its accessible
+  Blade markup to every product card, with focused rendering coverage.
+- Added the repo-scoped `$build-laravel-qa-pipeline` skill for deterministic local
+  and CI checks, GitHub review gates, staging verification, dependency security,
+  and explicitly policy-gated AI review.
+- Added a generated two-burner gas-stove catalog photo for SKU `SV-4340` through
+  the shared SKU-based image resolver, with focused regression coverage.
+
 ## 2026-08-10 08:14 (Asia/Tokyo)
 
 - Merged a staged pull-request QA pipeline with four deterministic gates:

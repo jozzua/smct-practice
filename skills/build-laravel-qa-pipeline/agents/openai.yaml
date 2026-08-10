@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Laravel QA Pipeline"
+  short_description: "Build deterministic Laravel QA and PR gates"
+  default_prompt: "Use $build-laravel-qa-pipeline to design and implement a reliable QA pipeline for this Laravel repository."

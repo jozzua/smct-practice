@@ -69,6 +69,10 @@
   (`skills/apply-product-sale-pricing/SKILL.md`) for sale-price changes or pricing
   inconsistencies across the catalog, checkout, VAT, shipping, and stored order
   items.
+- Use `$build-laravel-qa-pipeline`
+  (`skills/build-laravel-qa-pipeline/SKILL.md`) to design, implement, or audit local
+  QA commands, GitHub Actions, pull-request gates, browser smoke tests, staging
+  verification, dependency security, and policy-gated AI review.
 - When adding, renaming, or removing a repo-scoped skill, update this list and the
   relevant learning record or development documentation in the same change.
 

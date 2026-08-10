@@ -20,6 +20,12 @@ one line per task, newest at the top of each section.
   recent-change summaries, handoffs, and explicit context-documentation refreshes.
 - Development-log history standardized with Asia/Tokyo date-and-time headings, a
   timestamped update marker, and a repository rule for future entries.
+- Barcode-style SKU markup added to product cards with accessible text and focused
+  rendering coverage.
+- `$build-laravel-qa-pipeline` added to standardize deterministic CI, PR gates,
+  browser and staging checks, dependency security, and policy-gated AI review.
+- Generated gas-stove catalog photo added for SKU `SV-4340` through
+  `$swap-product-card-photo`, with focused resolver coverage.
 - Staged pull-request QA pipeline added with deterministic PHP style, backend test,
   frontend build, and fresh-database smoke gates plus a non-blocking advisory report
   (PR #23) — guide: [[qa-pipeline]].

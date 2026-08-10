@@ -566,6 +566,112 @@ Status: implemented and verified locally.
   change and can be restored independently of application code, subject to the
   repository's approval requirement.
 
+### Complete the barcode-style SKU markup
+
+Status: implemented and verified locally.
+
+- Exercise intent: activate the barcode presentation introduced by the upstream
+  stylesheet while preserving the readable SKU as real text.
+- Baseline commit: `5f84c0a`, after merging upstream PR #21 into local `main`.
+- Replaced the plain `SKU {code}` line with an accessible group containing
+  `.sku-label`, a decorative `.sku-barcode`, and `.sku-code` spans.
+- Kept `aria-label="SKU {code}"` on the group and marked the visual barcode
+  `aria-hidden="true"` so assistive technology receives the stable SKU once.
+- Added `ProductSkuBarcodeTest` with exact rendered-markup assertions for sample SKU
+  `RC-1234`.
+- Affected files: `resources/views/products/index.blade.php`,
+  `tests/Feature/ProductSkuBarcodeTest.php`, `docs/kanban.md`,
+  `docs/development-log.md`, and `docs/rehearsal-learning-record.md`.
+
+#### Verification and restore boundary
+
+- `php artisan test tests/Feature/ProductSkuBarcodeTest.php` — passed:
+  1 test, 5 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductSkuBarcodeTest.php resources/views/products/index.blade.php`
+  — passed.
+- `npm run build` — passed; Vite emitted only the existing optional `fontaine`
+  optimization notice.
+- `composer test` — passed: 22 tests passed, 1 skipped, 142 assertions.
+- In-app browser verification was not available because browser control blocks the
+  local `127.0.0.1` URL; manual refresh remains the visual verification step.
+- Repository inspection found no `dev/` directory or separate TODO notes; the
+  Kanban board remains the source of truth.
+- Treat the Blade markup, focused test, and these documentation entries as one
+  uncommitted restore unit, separate from the existing QA-skill and `SV-4340`
+  rehearsal work.
+
+### Create the Laravel QA pipeline skill
+
+Status: implemented and structurally validated.
+
+- Exercise intent: turn the SMCT QA-pipeline design into a reusable repository
+  workflow that another Codex session can invoke without reconstructing the quality
+  model from chat history.
+- Added `$build-laravel-qa-pipeline` with a deterministic-first sequence covering
+  baseline inspection, stable CI check names, local QA commands, GitHub Actions,
+  isolated migration and seeder smoke tests, browser journeys, branch protection,
+  staging and rollback gates, dependency review, and handoff evidence.
+- Kept AI review optional and advisory until the repository owner explicitly allows
+  private diffs to be sent to an AI provider. The deterministic pipeline remains
+  useful if that policy answer is no.
+- Added `agents/openai.yaml` metadata so the skill is discoverable with a concise
+  UI description and a correct `$build-laravel-qa-pipeline` invocation prompt.
+- Registered the skill in `AGENTS.md` and updated the Kanban and development log.
+- Affected files: `skills/build-laravel-qa-pipeline/SKILL.md`,
+  `skills/build-laravel-qa-pipeline/agents/openai.yaml`, `AGENTS.md`,
+  `docs/kanban.md`, `docs/development-log.md`, and
+  `docs/rehearsal-learning-record.md`.
+
+#### Verification and restore boundary
+
+- The official `quick_validate.py` skill validator passed: `Skill is valid!`.
+- Confirmed the generated skill contains no template TODOs, uses only supported
+  frontmatter fields, and keeps its body below the 500-line guidance limit.
+- No application tests or frontend build were required because this change only
+  adds Markdown/YAML agent guidance and repository documentation.
+- Treat these skill and instruction edits as one uncommitted restore unit. They are
+  separate from the existing uncommitted `SV-4340` image, focused test, and related
+  documentation changes; overlapping documentation preserves both exercises.
+
+### Generate the gas-stove photo for SKU `SV-4340`
+
+Status: implemented and verified locally.
+
+- Exercise intent: create a polished catalog product image for exact SKU `SV-4340`
+  and integrate it through the existing SKU-based resolver.
+- Generated an original square product shot of a compact two-burner stainless-steel
+  gas stove on a warm off-white studio background. The composition keeps the whole
+  appliance visible inside the storefront's circular product-image crop.
+- Saved the final 1,254 × 1,254 JPEG as
+  `public/images/products/SV-4340.jpeg`; no existing asset was overwritten.
+- Preserved `<x-card>` and `Product::imageUrl()` without adding view conditionals,
+  URL lists, product-name matching, or a new image resolver.
+- Extended `ProductCardPhotoTest` with an exact `SV-4340` fixture, a local-file
+  assertion, the expected resolver URL, rendered URL coverage, and product-specific
+  alt-text coverage.
+- Affected files: `public/images/products/SV-4340.jpeg`,
+  `tests/Feature/ProductCardPhotoTest.php`, `docs/kanban.md`,
+  `docs/development-log.md`, and `docs/rehearsal-learning-record.md`.
+
+#### Verification
+
+- Visual inspection — confirmed a centered, realistic two-burner stove with no
+  logos, text, flames, cookware, people, watermark, or cropped product edges.
+- `php artisan test tests/Feature/ProductCardPhotoTest.php` — passed:
+  1 test, 31 assertions.
+- `vendor/bin/pint --test tests/Feature/ProductCardPhotoTest.php` — passed.
+- `composer test` — passed: 21 tests, 1 skipped, 125 assertions.
+
+#### Teaching points and restore boundary
+
+1. Use the exact SKU as the stable selector and filename, even when a generated
+   product name is only a test fixture.
+2. A product-image task is complete only when the resolver, rendered catalog output,
+   alt text, and focused regression test agree with the asset path.
+3. Treat the generated JPEG and its focused test additions as one restore unit.
+   The Kanban, development log, and this learning record describe that same unit.
+   Obtain explicit approval before removing or restoring it.
+
 ### Fix the DatabaseSeeder argument mismatch
 
 Status: implemented and verified locally.

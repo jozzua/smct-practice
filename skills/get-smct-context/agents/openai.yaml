@@ -1,0 +1,4 @@
+interface:
+  display_name: "Get SMCT Context"
+  short_description: "Brief agents on current SMCT repository work"
+  default_prompt: "Use $get-smct-context to summarize the latest SMCT changes, active work, and documented next steps."

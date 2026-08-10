@@ -148,6 +148,68 @@ the current `codex/replace-classic-desk-lamp-image` branch and its upstream poin
 
 ## Current educational exercise
 
+### Add a repository-only SMCT context skill
+
+Status: implemented and verified locally.
+
+- Exercise intent: let any new agent reconstruct recent SMCT work and documented
+  next steps from repository evidence without importing unrelated context.
+- Baseline commit: `84d4874`, with the timestamp-convention documentation exercise
+  still present as tracked working-tree changes.
+- Added `$get-smct-context` with a read-only briefing workflow that reconciles Git,
+  the Kanban board, development history, rehearsal restore boundaries, PRDs, and
+  relevant sanitized local logs.
+- Added an explicitly authorized documentation-refresh mode that maintains the
+  development-log timestamp convention, Kanban task state, learning records, and
+  verified handoff facts.
+- Required SMCT-only output, current-state checks before trusting narrative docs,
+  stale-handoff detection, and clear separation of committed, merged, branch-only,
+  and uncommitted work.
+- Registered the skill in `AGENTS.md` and documented the completed change in the
+  development log and Kanban board.
+- Affected files: `skills/get-smct-context/SKILL.md`,
+  `skills/get-smct-context/agents/openai.yaml`, `AGENTS.md`,
+  `docs/development-log.md`, `docs/kanban.md`, and
+  `docs/rehearsal-learning-record.md`.
+
+#### Verification and restore boundary
+
+- `quick_validate.py skills/get-smct-context` — passed with a temporary PyYAML
+  dependency outside the repository.
+- Reviewed the skill metadata and workflow against current repository documentation;
+  application tests and the frontend build were not required because this change
+  adds agent guidance and Markdown documentation only.
+- Preserve the skill, its registration, and these documentation entries as one
+  restore unit layered on the existing uncommitted timestamp-convention exercise.
+
+### Require date and time in development-log updates
+
+Status: documented and verified locally.
+
+- Exercise intent: ensure future development-log updates record when work happened,
+  not only the calendar day.
+- Baseline commit: `5f84c0a`, with the preceding QA-documentation synchronization
+  still present as tracked working-tree changes.
+- Added a timestamped `Last updated` marker and standardized history headings as
+  `YYYY-MM-DD HH:MM (Asia/Tokyo)`.
+- Derived historical times from the latest relevant Git commits rather than
+  inventing approximate times.
+- Added the timestamp convention to `AGENTS.md` so later sessions preserve it and
+  recorded the completed documentation task on the Kanban board.
+- Affected files: `AGENTS.md`, `docs/development-log.md`, `docs/kanban.md`, and
+  `docs/rehearsal-learning-record.md`.
+
+#### Verification and restore boundary
+
+- Confirmed the repository timezone as Asia/Tokyo, reviewed relevant commit
+  timestamps, checked every development-log history heading, and ran
+  `git diff --check`.
+- Application tests and the frontend build were not required because the changes
+  affect repository guidance and Markdown documentation only.
+- Treat these four edits as one timestamp-convention restore unit layered on the
+  preceding uncommitted QA-documentation synchronization. Preserve this record and
+  obtain explicit approval before discarding either exercise.
+
 ### Synchronize the QA documentation with merged work
 
 Status: documented and verified locally.

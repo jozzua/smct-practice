@@ -3,7 +3,22 @@
 This log records meaningful repository changes and the current development state.
 The [Kanban board](kanban.md) is the source of truth for active work.
 
-## 2026-08-10
+Last updated: 2026-08-10 09:40 (Asia/Tokyo)
+
+History headings use the local time of the latest relevant recorded change.
+
+## 2026-08-10 09:40 (Asia/Tokyo)
+
+- Added the repo-scoped `$get-smct-context` skill so a new agent can build a
+  verified, SMCT-only briefing from current Git state, the Kanban board, the
+  development log, the rehearsal record, relevant PRDs, and sanitized local logs.
+- Defined separate read-only briefing and explicitly authorized documentation-refresh
+  modes, including rules for detecting stale handoff notes and distinguishing
+  committed, merged, branch-only, and uncommitted work.
+- Registered the skill in `AGENTS.md` and validated its structure with the official
+  skill validator.
+
+## 2026-08-10 08:14 (Asia/Tokyo)
 
 - Merged a staged pull-request QA pipeline with four deterministic gates:
   `php-style`, `php-tests`, `frontend-build`, and `database-smoke`.
@@ -18,7 +33,7 @@ The [Kanban board](kanban.md) is the source of truth for active work.
   corrected the advisory report so documentation-only changes do not receive a
   contradictory missing-test warning.
 
-## 2026-07-28
+## 2026-07-28 06:34 (Asia/Tokyo)
 
 - Added the three-altitude QA checklist: focused tests, the complete suite, and live
   post-deployment verification.
@@ -26,7 +41,7 @@ The [Kanban board](kanban.md) is the source of truth for active work.
   Kanban movement, exact live identifiers, unchanged test intent, and honest
   reporting of unrelated failures.
 
-## 2026-07-27
+## 2026-07-27 11:45 (Asia/Tokyo)
 
 - Replaced the catalog photo for Classic Flat Iron SKU `LI-8867` with a CC0
   museum photo while preserving the shared SKU-based image resolver.
@@ -69,7 +84,7 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 - The admin login feature remains planned but unimplemented; see the
   [admin login PRD](admin-login-prd.md).
 
-## 2026-07-24
+## 2026-07-24 08:47 (Asia/Tokyo)
 
 - `main` is synchronized with `origin/main`.
 - Added a shared Markdown Kanban board for work that needs to remain visible between
@@ -94,7 +109,7 @@ The [Kanban board](kanban.md) is the source of truth for active work.
 - The admin login feature remains planned but unimplemented; see the
   [admin login PRD](admin-login-prd.md).
 
-## 2026-07-20
+## 2026-07-20 11:34 (Asia/Tokyo)
 
 - Added the admin login product requirements specification.
 - Merged the backend planning work into `main`.

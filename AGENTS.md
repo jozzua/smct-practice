@@ -42,6 +42,9 @@
 ## Kanban board and work tracking
 
 - Treat `docs/kanban.md` as the source of truth for active repository work.
+- When updating `docs/development-log.md`, include both the date and time in
+  Asia/Tokyo. Keep a `Last updated: YYYY-MM-DD HH:MM (Asia/Tokyo)` marker and use
+  `YYYY-MM-DD HH:MM (Asia/Tokyo)` for new history headings.
 - Before starting an implementation task, read the board and inspect the working
   tree so existing work and unrelated rehearsal changes remain visible.
 - When picking up a Todo item, move it to Doing and add your name. Keep one task per
@@ -55,6 +58,10 @@
 
 - Repo-scoped Codex skills live under `skills/`. Read the matching `SKILL.md`
   completely before using a skill and follow its workflow and guardrails.
+- Use `$get-smct-context`
+  (`skills/get-smct-context/SKILL.md`) for SMCT repository briefings, recent-change
+  summaries, handoffs, or explicit context-documentation refreshes. Keep its output
+  limited to SMCT and read-only unless the user asks to update the documentation.
 - Use `$swap-product-card-photo`
   (`skills/swap-product-card-photo/SKILL.md`) for catalog product-photo changes,
   product-image merge conflicts, or regressions involving the shared product card.

@@ -16,6 +16,10 @@ one line per task, newest at the top of each section.
 
 ## Done
 
+- Repo-scoped `$get-smct-context` skill added for verified SMCT-only briefings,
+  recent-change summaries, handoffs, and explicit context-documentation refreshes.
+- Development-log history standardized with Asia/Tokyo date-and-time headings, a
+  timestamped update marker, and a repository rule for future entries.
 - Staged pull-request QA pipeline added with deterministic PHP style, backend test,
   frontend build, and fresh-database smoke gates plus a non-blocking advisory report
   (PR #23) — guide: [[qa-pipeline]].

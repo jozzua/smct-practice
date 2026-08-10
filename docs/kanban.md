@@ -18,6 +18,8 @@ one line per task, newest at the top of each section.
 
 - `$repo-sync-checker` added for safe git synchronization, merge-conflict review,
   rehearsal-change protection, approval boundaries, and post-merge verification.
+- `$operate-laravel-releases` added as an approval-gated DevOps runbook with
+  operator documentation, release verification, evidence, and rollback guidance.
 - Repo-scoped `$get-smct-context` skill added for verified SMCT-only briefings,
   recent-change summaries, handoffs, and explicit context-documentation refreshes.
 - Development-log history standardized with Asia/Tokyo date-and-time headings, a

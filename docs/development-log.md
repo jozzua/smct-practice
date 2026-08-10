@@ -3,9 +3,19 @@
 This log records meaningful repository changes and the current development state.
 The [Kanban board](kanban.md) is the source of truth for active work.
 
-Last updated: 2026-08-10 09:40 (Asia/Tokyo)
+Last updated: 2026-08-10 10:48 (Asia/Tokyo)
 
 History headings use the local time of the latest relevant recorded change.
+
+## 2026-08-10 10:48 (Asia/Tokyo)
+
+- Added the repo-scoped `$operate-laravel-releases` runbook and operator guide for
+  approval-gated Laravel releases, verification, redacted evidence, and rollback.
+- Kept release operations separate from automated QA gates and documented unresolved
+  hosting, topology, backup, queue, observability, and recovery inputs that must be
+  confirmed before platform-specific commands are used.
+- Linked the operator guide from the README and registered the skill and its trigger
+  in `AGENTS.md`.
 
 ## 2026-08-10 09:40 (Asia/Tokyo)
 

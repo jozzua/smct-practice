@@ -27,6 +27,8 @@ and product is generated.
   work.
 - [Admin login PRD](docs/admin-login-prd.md) — requirements for the planned admin
   access-control foundation.
+- [Laravel release operations](docs/operate-laravel-releases.md) — approval-gated
+  deployment, verification, evidence, and rollback guidance for DevOps work.
 
 ## Setup (about 5 minutes)
 

@@ -23,6 +23,29 @@ application commit is `7207779`.
 
 ## Committed educational exercises
 
+### Add the Laravel release-operations skill
+
+Status: implemented and verified as an educational exercise.
+
+- Exercise intent: turn researched Laravel release best practices into a reusable,
+  approval-gated DevOps runbook without granting production access.
+- Added `$operate-laravel-releases` and an operator-facing guide covering its boundary
+  from automated QA, release lifecycle, migration and live-data guardrails, secret
+  redaction, health and smoke verification, queue/cache handling, evidence, and
+  rollback.
+- Affected files: `skills/operate-laravel-releases/SKILL.md`,
+  `skills/operate-laravel-releases/agents/openai.yaml`,
+  `docs/operate-laravel-releases.md`, `README.md`, `AGENTS.md`, `docs/kanban.md`,
+  `docs/development-log.md`, and `docs/rehearsal-learning-record.md`.
+- Verification approach: validate the skill structure, confirm documentation links
+  and referenced paths, review the scoped diff, and run `git diff --check`. No PHP,
+  frontend, database, or production checks are required for documentation and skill
+  instructions alone.
+- Restore boundary: treat the new skill, operator guide, discovery links, Kanban
+  update, and these records as one tracked rehearsal change. Pre-existing checkout
+  artifacts remain separate from this exercise. Obtain explicit approval before
+  restoring or discarding either boundary.
+
 ### `377f510` — Add the product-photo skill
 
 - Added the repo-scoped `$swap-product-card-photo` skill.

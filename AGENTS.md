@@ -78,6 +78,10 @@
   change protection, and post-merge verification. See
   `docs/repo-sync-checker.md` for the user-facing workflow and approval
   boundaries.
+- Use `$operate-laravel-releases`
+  (`skills/operate-laravel-releases/SKILL.md`) when preparing, executing, auditing,
+  or documenting a release, including preflight, production approval, migrations,
+  runtime reloads, health and smoke checks, evidence, and rollback planning.
 - When adding, renaming, or removing a repo-scoped skill, update this list and the
   relevant learning record or development documentation in the same change.
 
